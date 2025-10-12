@@ -72,7 +72,7 @@ const generateImgDistFileName = (
 ) => {
 	if (isAbslutePath(imgUrl)) return imgUrl;
 
-	const baseNameHash = crypto.createHash('sha256').update(imgUrl).digest('base64').slice(0, 8);
+	const baseNameHash = crypto.createHash('sha256').update(imgUrl).digest('base64').slice(0, 8).replaceAll('/', '_');
 	const baseName = path.parse(imgUrl).name;
 	// eslint-disable-next-line ts/restrict-template-expressions
 	if (dim) return `${baseName}-${baseNameHash}-${Math.round(dim.width)}x${Math.round(dim.height)}.webp`;
