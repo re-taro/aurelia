@@ -1,5 +1,11 @@
 # contents
 
+## 3.2.1
+
+### Patch Changes
+
+- [#704](https://github.com/re-taro/blog.re-taro.dev/pull/704) [`840669a`](https://github.com/re-taro/blog.re-taro.dev/commit/840669a8b7123237aff1fcf0654375690c866f44) Thanks [@re-taro](https://github.com/re-taro)! - Add pic for React Conf 2025
+
 ## 3.2.0
 
 ### Minor Changes
