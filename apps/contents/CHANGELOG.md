@@ -1,5 +1,11 @@
 # contents
 
+## 3.2.0
+
+### Minor Changes
+
+- [#702](https://github.com/re-taro/blog.re-taro.dev/pull/702) [`2ea5efd`](https://github.com/re-taro/blog.re-taro.dev/commit/2ea5efd68d9f565c69bb74194442898dc8a6b240) Thanks [@re-taro](https://github.com/re-taro)! - feat: wrote about React Conf 2025
+
 ## 3.1.0
 
 ### Minor Changes
