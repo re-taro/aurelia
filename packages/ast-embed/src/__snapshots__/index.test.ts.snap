@@ -1,0 +1,230 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`astEmbed > should not transform \`link\` to \`embed\` if parent is not \`root\` (from AST) 1`] = `
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "position": {
+                        "end": {
+                          "column": 22,
+                          "line": 1,
+                          "offset": 21,
+                        },
+                        "start": {
+                          "column": 3,
+                          "line": 1,
+                          "offset": 2,
+                        },
+                      },
+                      "type": "text",
+                      "value": "https://example.com",
+                    },
+                  ],
+                  "position": {
+                    "end": {
+                      "column": 22,
+                      "line": 1,
+                      "offset": 21,
+                    },
+                    "start": {
+                      "column": 3,
+                      "line": 1,
+                      "offset": 2,
+                    },
+                  },
+                  "title": undefined,
+                  "type": "link",
+                  "url": "https://example.com",
+                },
+              ],
+              "position": {
+                "end": {
+                  "column": 22,
+                  "line": 1,
+                  "offset": 21,
+                },
+                "start": {
+                  "column": 3,
+                  "line": 1,
+                  "offset": 2,
+                },
+              },
+              "type": "paragraph",
+            },
+          ],
+          "position": {
+            "end": {
+              "column": 22,
+              "line": 1,
+              "offset": 21,
+            },
+            "start": {
+              "column": 1,
+              "line": 1,
+              "offset": 0,
+            },
+          },
+          "type": "listItem",
+        },
+      ],
+      "position": {
+        "end": {
+          "column": 22,
+          "line": 1,
+          "offset": 21,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "unorderedList",
+    },
+  ],
+  "footnotes": [],
+  "position": {
+    "end": {
+      "column": 1,
+      "line": 2,
+      "offset": 22,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`astEmbed > should transform orphan \`link\` to \`embed\` (from AST) 1`] = `
+{
+  "children": [
+    {
+      "meta": {
+        "favicon": "https://example.com/favicon.ico",
+        "title": "Example Domain",
+      },
+      "oembed": undefined,
+      "position": {
+        "end": {
+          "column": 20,
+          "line": 1,
+          "offset": 19,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "src": "https://example.com/",
+      "type": "embed",
+    },
+    {
+      "allowFullScreen": undefined,
+      "height": "360",
+      "position": {
+        "end": {
+          "column": 44,
+          "line": 3,
+          "offset": 64,
+        },
+        "start": {
+          "column": 1,
+          "line": 3,
+          "offset": 21,
+        },
+      },
+      "src": "https://www.youtube.com/embed/SHkF48SgiSA",
+      "type": "embed",
+      "width": "100%",
+    },
+    {
+      "allowFullScreen": true,
+      "height": undefined,
+      "position": {
+        "end": {
+          "column": 101,
+          "line": 5,
+          "offset": 166,
+        },
+        "start": {
+          "column": 1,
+          "line": 5,
+          "offset": 66,
+        },
+      },
+      "src": "https://docs.google.com/presentation/d/1Jx4nQbzFk5BYTTZwuOMGQOd359G_orJU-OrG4Bg3ohg/embed",
+      "type": "embed",
+      "width": "100%",
+    },
+    {
+      "codeLines": ""use strict";",
+      "commitHashOrBranch": "f960d52364e72fa7548cc8aaaf6367dfdf7b9a8f",
+      "filename": "swc-project/swc/packages/core/postinstall.js",
+      "lang": "js",
+      "lines": {
+        "end": 1,
+        "start": 0,
+      },
+      "src": "https://github.com/swc-project/swc/blob/f960d52364e72fa7548cc8aaaf6367dfdf7b9a8f/packages/core/postinstall.js",
+      "type": "embed",
+    },
+    {
+      "codeLines": "/** Create a style element inside \`target\` or <head> after the last */
+export const makeStyleTag = (target?: InsertionTarget | undefined): HTMLStyleElement => {
+  const head = document.head;
+  const parent = target || head;
+  const style = document.createElement('style');
+  const prevStyle = findLastStyleTag(parent);
+  const nextSibling = prevStyle !== undefined ? prevStyle.nextSibling : null;
+
+  style.setAttribute(SC_ATTR, SC_ATTR_ACTIVE);
+  style.setAttribute(SC_ATTR_VERSION, SC_VERSION);
+
+  const nonce = getNonce();
+
+  if (nonce) style.setAttribute('nonce', nonce);
+
+  parent.insertBefore(style, nextSibling);
+
+  return style;
+};",
+      "commitHashOrBranch": "ef548a2fd1d8b7766a273084edb33caf7d8a37df",
+      "filename": "styled-components/styled-components/packages/styled-components/src/sheet/dom.ts",
+      "lang": "ts",
+      "lines": {
+        "end": 31,
+        "start": 12,
+      },
+      "src": "https://github.com/styled-components/styled-components/blob/ef548a2fd1d8b7766a273084edb33caf7d8a37df/packages/styled-components/src/sheet/dom.ts#L13-L31",
+      "type": "embed",
+    },
+  ],
+  "footnotes": [],
+  "position": {
+    "end": {
+      "column": 1,
+      "line": 10,
+      "offset": 432,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;

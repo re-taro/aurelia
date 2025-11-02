@@ -1,0 +1,4130 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`astArticle > should transform article structure (from AST) 1`] = `
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "position": {
+                "end": {
+                  "column": 8,
+                  "line": 3,
+                  "offset": 18,
+                },
+                "start": {
+                  "column": 4,
+                  "line": 3,
+                  "offset": 14,
+                },
+              },
+              "type": "text",
+              "value": "はじめに",
+            },
+          ],
+          "id": "はじめに",
+          "level": 2,
+          "plain": "はじめに",
+          "position": {
+            "end": {
+              "column": 8,
+              "line": 3,
+              "offset": 18,
+            },
+            "start": {
+              "column": 1,
+              "line": 3,
+              "offset": 11,
+            },
+          },
+          "type": "heading",
+        },
+        {
+          "children": [
+            {
+              "position": {
+                "end": {
+                  "column": 29,
+                  "line": 5,
+                  "offset": 48,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 5,
+                  "offset": 20,
+                },
+              },
+              "type": "text",
+              "value": "ブログを再構築した。これは、そのテスト用のポストである。",
+            },
+          ],
+          "position": {
+            "end": {
+              "column": 29,
+              "line": 5,
+              "offset": 48,
+            },
+            "start": {
+              "column": 1,
+              "line": 5,
+              "offset": 20,
+            },
+          },
+          "type": "paragraph",
+        },
+      ],
+      "position": {
+        "end": {
+          "column": 29,
+          "line": 5,
+          "offset": 48,
+        },
+        "start": {
+          "column": 1,
+          "line": 3,
+          "offset": 11,
+        },
+      },
+      "type": "section",
+    },
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "position": {
+                "end": {
+                  "column": 7,
+                  "line": 7,
+                  "offset": 56,
+                },
+                "start": {
+                  "column": 4,
+                  "line": 7,
+                  "offset": 53,
+                },
+              },
+              "type": "text",
+              "value": "テスト",
+            },
+          ],
+          "id": "テスト",
+          "level": 2,
+          "plain": "テスト",
+          "position": {
+            "end": {
+              "column": 7,
+              "line": 7,
+              "offset": 56,
+            },
+            "start": {
+              "column": 1,
+              "line": 7,
+              "offset": 50,
+            },
+          },
+          "type": "heading",
+        },
+        {
+          "children": [
+            {
+              "position": {
+                "end": {
+                  "column": 39,
+                  "line": 9,
+                  "offset": 96,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 9,
+                  "offset": 58,
+                },
+              },
+              "type": "text",
+              "value": "以降は、本サイトのマークアップやスタイルをテストするためのセクションである。",
+            },
+          ],
+          "position": {
+            "end": {
+              "column": 39,
+              "line": 9,
+              "offset": 96,
+            },
+            "start": {
+              "column": 1,
+              "line": 9,
+              "offset": 58,
+            },
+          },
+          "type": "paragraph",
+        },
+        {
+          "children": [
+            {
+              "position": {
+                "end": {
+                  "column": 22,
+                  "line": 11,
+                  "offset": 119,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 11,
+                  "offset": 98,
+                },
+              },
+              "type": "text",
+              "value": "対応している記法を列挙し、挙動を確認する。",
+            },
+          ],
+          "position": {
+            "end": {
+              "column": 22,
+              "line": 11,
+              "offset": 119,
+            },
+            "start": {
+              "column": 1,
+              "line": 11,
+              "offset": 98,
+            },
+          },
+          "type": "paragraph",
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "position": {
+                    "end": {
+                      "column": 22,
+                      "line": 13,
+                      "offset": 142,
+                    },
+                    "start": {
+                      "column": 5,
+                      "line": 13,
+                      "offset": 125,
+                    },
+                  },
+                  "type": "text",
+                  "value": "heading section 3",
+                },
+              ],
+              "id": "heading-section-3",
+              "level": 3,
+              "plain": "heading section 3",
+              "position": {
+                "end": {
+                  "column": 22,
+                  "line": 13,
+                  "offset": 142,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 13,
+                  "offset": 121,
+                },
+              },
+              "type": "heading",
+            },
+            {
+              "children": [
+                {
+                  "position": {
+                    "end": {
+                      "column": 5,
+                      "line": 15,
+                      "offset": 148,
+                    },
+                    "start": {
+                      "column": 1,
+                      "line": 15,
+                      "offset": 144,
+                    },
+                  },
+                  "type": "text",
+                  "value": "ここは ",
+                },
+                {
+                  "position": {
+                    "end": {
+                      "column": 11,
+                      "line": 15,
+                      "offset": 154,
+                    },
+                    "start": {
+                      "column": 5,
+                      "line": 15,
+                      "offset": 148,
+                    },
+                  },
+                  "type": "inlineCode",
+                  "value": "<h3>",
+                },
+                {
+                  "position": {
+                    "end": {
+                      "column": 21,
+                      "line": 15,
+                      "offset": 164,
+                    },
+                    "start": {
+                      "column": 11,
+                      "line": 15,
+                      "offset": 154,
+                    },
+                  },
+                  "type": "text",
+                  "value": " セクションである。",
+                },
+              ],
+              "position": {
+                "end": {
+                  "column": 21,
+                  "line": 15,
+                  "offset": 164,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 15,
+                  "offset": 144,
+                },
+              },
+              "type": "paragraph",
+            },
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "position": {
+                        "end": {
+                          "column": 23,
+                          "line": 17,
+                          "offset": 188,
+                        },
+                        "start": {
+                          "column": 6,
+                          "line": 17,
+                          "offset": 171,
+                        },
+                      },
+                      "type": "text",
+                      "value": "heading section 4",
+                    },
+                  ],
+                  "id": "heading-section-4",
+                  "level": 4,
+                  "plain": "heading section 4",
+                  "position": {
+                    "end": {
+                      "column": 23,
+                      "line": 17,
+                      "offset": 188,
+                    },
+                    "start": {
+                      "column": 1,
+                      "line": 17,
+                      "offset": 166,
+                    },
+                  },
+                  "type": "heading",
+                },
+                {
+                  "children": [
+                    {
+                      "position": {
+                        "end": {
+                          "column": 5,
+                          "line": 19,
+                          "offset": 194,
+                        },
+                        "start": {
+                          "column": 1,
+                          "line": 19,
+                          "offset": 190,
+                        },
+                      },
+                      "type": "text",
+                      "value": "ここは ",
+                    },
+                    {
+                      "position": {
+                        "end": {
+                          "column": 11,
+                          "line": 19,
+                          "offset": 200,
+                        },
+                        "start": {
+                          "column": 5,
+                          "line": 19,
+                          "offset": 194,
+                        },
+                      },
+                      "type": "inlineCode",
+                      "value": "<h4>",
+                    },
+                    {
+                      "position": {
+                        "end": {
+                          "column": 21,
+                          "line": 19,
+                          "offset": 210,
+                        },
+                        "start": {
+                          "column": 11,
+                          "line": 19,
+                          "offset": 200,
+                        },
+                      },
+                      "type": "text",
+                      "value": " セクションである。",
+                    },
+                  ],
+                  "position": {
+                    "end": {
+                      "column": 21,
+                      "line": 19,
+                      "offset": 210,
+                    },
+                    "start": {
+                      "column": 1,
+                      "line": 19,
+                      "offset": 190,
+                    },
+                  },
+                  "type": "paragraph",
+                },
+              ],
+              "position": {
+                "end": {
+                  "column": 21,
+                  "line": 19,
+                  "offset": 210,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 17,
+                  "offset": 166,
+                },
+              },
+              "type": "section",
+            },
+          ],
+          "position": {
+            "end": {
+              "column": 21,
+              "line": 19,
+              "offset": 210,
+            },
+            "start": {
+              "column": 1,
+              "line": 13,
+              "offset": 121,
+            },
+          },
+          "type": "section",
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "position": {
+                    "end": {
+                      "column": 12,
+                      "line": 21,
+                      "offset": 223,
+                    },
+                    "start": {
+                      "column": 5,
+                      "line": 21,
+                      "offset": 216,
+                    },
+                  },
+                  "type": "text",
+                  "value": "テキストの装飾",
+                },
+              ],
+              "id": "テキストの装飾",
+              "level": 3,
+              "plain": "テキストの装飾",
+              "position": {
+                "end": {
+                  "column": 12,
+                  "line": 21,
+                  "offset": 223,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 21,
+                  "offset": 212,
+                },
+              },
+              "type": "heading",
+            },
+            {
+              "children": [
+                {
+                  "position": {
+                    "end": {
+                      "column": 18,
+                      "line": 23,
+                      "offset": 242,
+                    },
+                    "start": {
+                      "column": 1,
+                      "line": 23,
+                      "offset": 225,
+                    },
+                  },
+                  "type": "text",
+                  "value": "テキストの装飾は以下の通りである。",
+                },
+              ],
+              "position": {
+                "end": {
+                  "column": 18,
+                  "line": 23,
+                  "offset": 242,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 23,
+                  "offset": 225,
+                },
+              },
+              "type": "paragraph",
+            },
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "position": {
+                                "end": {
+                                  "column": 7,
+                                  "line": 25,
+                                  "offset": 250,
+                                },
+                                "start": {
+                                  "column": 5,
+                                  "line": 25,
+                                  "offset": 248,
+                                },
+                              },
+                              "type": "text",
+                              "value": "太字",
+                            },
+                          ],
+                          "position": {
+                            "end": {
+                              "column": 9,
+                              "line": 25,
+                              "offset": 252,
+                            },
+                            "start": {
+                              "column": 3,
+                              "line": 25,
+                              "offset": 246,
+                            },
+                          },
+                          "type": "strong",
+                        },
+                        {
+                          "position": {
+                            "end": {
+                              "column": 11,
+                              "line": 25,
+                              "offset": 254,
+                            },
+                            "start": {
+                              "column": 9,
+                              "line": 25,
+                              "offset": 252,
+                            },
+                          },
+                          "type": "text",
+                          "value": "は ",
+                        },
+                        {
+                          "position": {
+                            "end": {
+                              "column": 21,
+                              "line": 25,
+                              "offset": 264,
+                            },
+                            "start": {
+                              "column": 11,
+                              "line": 25,
+                              "offset": 254,
+                            },
+                          },
+                          "type": "inlineCode",
+                          "value": "<strong>",
+                        },
+                        {
+                          "position": {
+                            "end": {
+                              "column": 30,
+                              "line": 25,
+                              "offset": 273,
+                            },
+                            "start": {
+                              "column": 21,
+                              "line": 25,
+                              "offset": 264,
+                            },
+                          },
+                          "type": "text",
+                          "value": " を用いて表現する",
+                        },
+                      ],
+                      "position": {
+                        "end": {
+                          "column": 30,
+                          "line": 25,
+                          "offset": 273,
+                        },
+                        "start": {
+                          "column": 3,
+                          "line": 25,
+                          "offset": 246,
+                        },
+                      },
+                      "type": "paragraph",
+                    },
+                  ],
+                  "position": {
+                    "end": {
+                      "column": 30,
+                      "line": 25,
+                      "offset": 273,
+                    },
+                    "start": {
+                      "column": 1,
+                      "line": 25,
+                      "offset": 244,
+                    },
+                  },
+                  "type": "listItem",
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "position": {
+                                "end": {
+                                  "column": 6,
+                                  "line": 26,
+                                  "offset": 279,
+                                },
+                                "start": {
+                                  "column": 4,
+                                  "line": 26,
+                                  "offset": 277,
+                                },
+                              },
+                              "type": "text",
+                              "value": "斜体",
+                            },
+                          ],
+                          "position": {
+                            "end": {
+                              "column": 7,
+                              "line": 26,
+                              "offset": 280,
+                            },
+                            "start": {
+                              "column": 3,
+                              "line": 26,
+                              "offset": 276,
+                            },
+                          },
+                          "type": "emphasis",
+                        },
+                        {
+                          "position": {
+                            "end": {
+                              "column": 9,
+                              "line": 26,
+                              "offset": 282,
+                            },
+                            "start": {
+                              "column": 7,
+                              "line": 26,
+                              "offset": 280,
+                            },
+                          },
+                          "type": "text",
+                          "value": "は ",
+                        },
+                        {
+                          "position": {
+                            "end": {
+                              "column": 15,
+                              "line": 26,
+                              "offset": 288,
+                            },
+                            "start": {
+                              "column": 9,
+                              "line": 26,
+                              "offset": 282,
+                            },
+                          },
+                          "type": "inlineCode",
+                          "value": "<em>",
+                        },
+                        {
+                          "position": {
+                            "end": {
+                              "column": 24,
+                              "line": 26,
+                              "offset": 297,
+                            },
+                            "start": {
+                              "column": 15,
+                              "line": 26,
+                              "offset": 288,
+                            },
+                          },
+                          "type": "text",
+                          "value": " を用いて表現する",
+                        },
+                      ],
+                      "position": {
+                        "end": {
+                          "column": 24,
+                          "line": 26,
+                          "offset": 297,
+                        },
+                        "start": {
+                          "column": 3,
+                          "line": 26,
+                          "offset": 276,
+                        },
+                      },
+                      "type": "paragraph",
+                    },
+                  ],
+                  "position": {
+                    "end": {
+                      "column": 24,
+                      "line": 26,
+                      "offset": 297,
+                    },
+                    "start": {
+                      "column": 1,
+                      "line": 26,
+                      "offset": 274,
+                    },
+                  },
+                  "type": "listItem",
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "position": {
+                                "end": {
+                                  "column": 10,
+                                  "line": 27,
+                                  "offset": 307,
+                                },
+                                "start": {
+                                  "column": 5,
+                                  "line": 27,
+                                  "offset": 302,
+                                },
+                              },
+                              "type": "text",
+                              "value": "取り消し線",
+                            },
+                          ],
+                          "position": {
+                            "end": {
+                              "column": 12,
+                              "line": 27,
+                              "offset": 309,
+                            },
+                            "start": {
+                              "column": 3,
+                              "line": 27,
+                              "offset": 300,
+                            },
+                          },
+                          "type": "delete",
+                        },
+                        {
+                          "position": {
+                            "end": {
+                              "column": 14,
+                              "line": 27,
+                              "offset": 311,
+                            },
+                            "start": {
+                              "column": 12,
+                              "line": 27,
+                              "offset": 309,
+                            },
+                          },
+                          "type": "text",
+                          "value": "は ",
+                        },
+                        {
+                          "position": {
+                            "end": {
+                              "column": 21,
+                              "line": 27,
+                              "offset": 318,
+                            },
+                            "start": {
+                              "column": 14,
+                              "line": 27,
+                              "offset": 311,
+                            },
+                          },
+                          "type": "inlineCode",
+                          "value": "<del>",
+                        },
+                        {
+                          "position": {
+                            "end": {
+                              "column": 30,
+                              "line": 27,
+                              "offset": 327,
+                            },
+                            "start": {
+                              "column": 21,
+                              "line": 27,
+                              "offset": 318,
+                            },
+                          },
+                          "type": "text",
+                          "value": " を用いて表現する",
+                        },
+                      ],
+                      "position": {
+                        "end": {
+                          "column": 30,
+                          "line": 27,
+                          "offset": 327,
+                        },
+                        "start": {
+                          "column": 3,
+                          "line": 27,
+                          "offset": 300,
+                        },
+                      },
+                      "type": "paragraph",
+                    },
+                  ],
+                  "position": {
+                    "end": {
+                      "column": 30,
+                      "line": 27,
+                      "offset": 327,
+                    },
+                    "start": {
+                      "column": 1,
+                      "line": 27,
+                      "offset": 298,
+                    },
+                  },
+                  "type": "listItem",
+                },
+              ],
+              "position": {
+                "end": {
+                  "column": 30,
+                  "line": 27,
+                  "offset": 327,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 25,
+                  "offset": 244,
+                },
+              },
+              "type": "unorderedList",
+            },
+          ],
+          "position": {
+            "end": {
+              "column": 30,
+              "line": 27,
+              "offset": 327,
+            },
+            "start": {
+              "column": 1,
+              "line": 21,
+              "offset": 212,
+            },
+          },
+          "type": "section",
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "position": {
+                    "end": {
+                      "column": 7,
+                      "line": 29,
+                      "offset": 335,
+                    },
+                    "start": {
+                      "column": 5,
+                      "line": 29,
+                      "offset": 333,
+                    },
+                  },
+                  "type": "text",
+                  "value": "脚注",
+                },
+              ],
+              "id": "脚注",
+              "level": 3,
+              "plain": "脚注",
+              "position": {
+                "end": {
+                  "column": 7,
+                  "line": 29,
+                  "offset": 335,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 29,
+                  "offset": 329,
+                },
+              },
+              "type": "heading",
+            },
+            {
+              "children": [
+                {
+                  "position": {
+                    "end": {
+                      "column": 5,
+                      "line": 31,
+                      "offset": 341,
+                    },
+                    "start": {
+                      "column": 1,
+                      "line": 31,
+                      "offset": 337,
+                    },
+                  },
+                  "type": "text",
+                  "value": "脚注は ",
+                },
+                {
+                  "position": {
+                    "end": {
+                      "column": 12,
+                      "line": 31,
+                      "offset": 348,
+                    },
+                    "start": {
+                      "column": 5,
+                      "line": 31,
+                      "offset": 341,
+                    },
+                  },
+                  "type": "inlineCode",
+                  "value": "<sup>",
+                },
+                {
+                  "position": {
+                    "end": {
+                      "column": 22,
+                      "line": 31,
+                      "offset": 358,
+                    },
+                    "start": {
+                      "column": 12,
+                      "line": 31,
+                      "offset": 348,
+                    },
+                  },
+                  "type": "text",
+                  "value": " を用いて表現する。",
+                },
+              ],
+              "position": {
+                "end": {
+                  "column": 22,
+                  "line": 31,
+                  "offset": 358,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 31,
+                  "offset": 337,
+                },
+              },
+              "type": "paragraph",
+            },
+            {
+              "children": [
+                {
+                  "position": {
+                    "end": {
+                      "column": 9,
+                      "line": 33,
+                      "offset": 368,
+                    },
+                    "start": {
+                      "column": 1,
+                      "line": 33,
+                      "offset": 360,
+                    },
+                  },
+                  "type": "text",
+                  "value": "これは脚注である",
+                },
+                {
+                  "footnoteIndex": 0,
+                  "position": {
+                    "end": {
+                      "column": 13,
+                      "line": 33,
+                      "offset": 372,
+                    },
+                    "start": {
+                      "column": 9,
+                      "line": 33,
+                      "offset": 368,
+                    },
+                  },
+                  "referenceIndex": 1,
+                  "type": "footnoteReference",
+                },
+                {
+                  "position": {
+                    "end": {
+                      "column": 14,
+                      "line": 33,
+                      "offset": 373,
+                    },
+                    "start": {
+                      "column": 13,
+                      "line": 33,
+                      "offset": 372,
+                    },
+                  },
+                  "type": "text",
+                  "value": "。",
+                },
+              ],
+              "position": {
+                "end": {
+                  "column": 14,
+                  "line": 33,
+                  "offset": 373,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 33,
+                  "offset": 360,
+                },
+              },
+              "type": "paragraph",
+            },
+          ],
+          "position": {
+            "end": {
+              "column": 14,
+              "line": 33,
+              "offset": 373,
+            },
+            "start": {
+              "column": 1,
+              "line": 29,
+              "offset": 329,
+            },
+          },
+          "type": "section",
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "position": {
+                    "end": {
+                      "column": 8,
+                      "line": 37,
+                      "offset": 402,
+                    },
+                    "start": {
+                      "column": 5,
+                      "line": 37,
+                      "offset": 399,
+                    },
+                  },
+                  "type": "text",
+                  "value": "リスト",
+                },
+              ],
+              "id": "リスト",
+              "level": 3,
+              "plain": "リスト",
+              "position": {
+                "end": {
+                  "column": 8,
+                  "line": 37,
+                  "offset": 402,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 37,
+                  "offset": 395,
+                },
+              },
+              "type": "heading",
+            },
+            {
+              "children": [
+                {
+                  "position": {
+                    "end": {
+                      "column": 16,
+                      "line": 39,
+                      "offset": 419,
+                    },
+                    "start": {
+                      "column": 1,
+                      "line": 39,
+                      "offset": 404,
+                    },
+                  },
+                  "type": "text",
+                  "value": "リストは 2 つの種類がある。",
+                },
+              ],
+              "position": {
+                "end": {
+                  "column": 16,
+                  "line": 39,
+                  "offset": 419,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 39,
+                  "offset": 404,
+                },
+              },
+              "type": "paragraph",
+            },
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "position": {
+                            "end": {
+                              "column": 11,
+                              "line": 41,
+                              "offset": 431,
+                            },
+                            "start": {
+                              "column": 4,
+                              "line": 41,
+                              "offset": 424,
+                            },
+                          },
+                          "type": "text",
+                          "value": "番号付きリスト",
+                        },
+                      ],
+                      "position": {
+                        "end": {
+                          "column": 11,
+                          "line": 41,
+                          "offset": 431,
+                        },
+                        "start": {
+                          "column": 4,
+                          "line": 41,
+                          "offset": 424,
+                        },
+                      },
+                      "type": "paragraph",
+                    },
+                  ],
+                  "position": {
+                    "end": {
+                      "column": 11,
+                      "line": 41,
+                      "offset": 431,
+                    },
+                    "start": {
+                      "column": 1,
+                      "line": 41,
+                      "offset": 421,
+                    },
+                  },
+                  "type": "listItem",
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "position": {
+                            "end": {
+                              "column": 11,
+                              "line": 42,
+                              "offset": 442,
+                            },
+                            "start": {
+                              "column": 4,
+                              "line": 42,
+                              "offset": 435,
+                            },
+                          },
+                          "type": "text",
+                          "value": "番号なしリスト",
+                        },
+                      ],
+                      "position": {
+                        "end": {
+                          "column": 11,
+                          "line": 42,
+                          "offset": 442,
+                        },
+                        "start": {
+                          "column": 4,
+                          "line": 42,
+                          "offset": 435,
+                        },
+                      },
+                      "type": "paragraph",
+                    },
+                  ],
+                  "position": {
+                    "end": {
+                      "column": 11,
+                      "line": 42,
+                      "offset": 442,
+                    },
+                    "start": {
+                      "column": 1,
+                      "line": 42,
+                      "offset": 432,
+                    },
+                  },
+                  "type": "listItem",
+                },
+              ],
+              "position": {
+                "end": {
+                  "column": 11,
+                  "line": 42,
+                  "offset": 442,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 41,
+                  "offset": 421,
+                },
+              },
+              "start": 1,
+              "type": "orderedList",
+            },
+            {
+              "children": [
+                {
+                  "position": {
+                    "end": {
+                      "column": 13,
+                      "line": 44,
+                      "offset": 456,
+                    },
+                    "start": {
+                      "column": 1,
+                      "line": 44,
+                      "offset": 444,
+                    },
+                  },
+                  "type": "text",
+                  "value": "それぞれは使うタグが違う",
+                },
+              ],
+              "position": {
+                "end": {
+                  "column": 13,
+                  "line": 44,
+                  "offset": 456,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 44,
+                  "offset": 444,
+                },
+              },
+              "type": "paragraph",
+            },
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "position": {
+                            "end": {
+                              "column": 9,
+                              "line": 46,
+                              "offset": 466,
+                            },
+                            "start": {
+                              "column": 3,
+                              "line": 46,
+                              "offset": 460,
+                            },
+                          },
+                          "type": "text",
+                          "value": "ここはリスト",
+                        },
+                      ],
+                      "position": {
+                        "end": {
+                          "column": 9,
+                          "line": 46,
+                          "offset": 466,
+                        },
+                        "start": {
+                          "column": 3,
+                          "line": 46,
+                          "offset": 460,
+                        },
+                      },
+                      "type": "paragraph",
+                    },
+                  ],
+                  "position": {
+                    "end": {
+                      "column": 9,
+                      "line": 46,
+                      "offset": 466,
+                    },
+                    "start": {
+                      "column": 1,
+                      "line": 46,
+                      "offset": 458,
+                    },
+                  },
+                  "type": "listItem",
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "position": {
+                            "end": {
+                              "column": 20,
+                              "line": 47,
+                              "offset": 486,
+                            },
+                            "start": {
+                              "column": 3,
+                              "line": 47,
+                              "offset": 469,
+                            },
+                          },
+                          "type": "text",
+                          "value": "unordered list は ",
+                        },
+                        {
+                          "position": {
+                            "end": {
+                              "column": 26,
+                              "line": 47,
+                              "offset": 492,
+                            },
+                            "start": {
+                              "column": 20,
+                              "line": 47,
+                              "offset": 486,
+                            },
+                          },
+                          "type": "inlineCode",
+                          "value": "<ul>",
+                        },
+                        {
+                          "position": {
+                            "end": {
+                              "column": 35,
+                              "line": 47,
+                              "offset": 501,
+                            },
+                            "start": {
+                              "column": 26,
+                              "line": 47,
+                              "offset": 492,
+                            },
+                          },
+                          "type": "text",
+                          "value": " を用いて表現する",
+                        },
+                      ],
+                      "position": {
+                        "end": {
+                          "column": 35,
+                          "line": 47,
+                          "offset": 501,
+                        },
+                        "start": {
+                          "column": 3,
+                          "line": 47,
+                          "offset": 469,
+                        },
+                      },
+                      "type": "paragraph",
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "position": {
+                                    "end": {
+                                      "column": 11,
+                                      "line": 48,
+                                      "offset": 512,
+                                    },
+                                    "start": {
+                                      "column": 5,
+                                      "line": 48,
+                                      "offset": 506,
+                                    },
+                                  },
+                                  "type": "text",
+                                  "value": "入れ子も可能",
+                                },
+                              ],
+                              "position": {
+                                "end": {
+                                  "column": 11,
+                                  "line": 48,
+                                  "offset": 512,
+                                },
+                                "start": {
+                                  "column": 5,
+                                  "line": 48,
+                                  "offset": 506,
+                                },
+                              },
+                              "type": "paragraph",
+                            },
+                          ],
+                          "position": {
+                            "end": {
+                              "column": 11,
+                              "line": 48,
+                              "offset": 512,
+                            },
+                            "start": {
+                              "column": 3,
+                              "line": 48,
+                              "offset": 504,
+                            },
+                          },
+                          "type": "listItem",
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "position": {
+                                    "end": {
+                                      "column": 15,
+                                      "line": 49,
+                                      "offset": 527,
+                                    },
+                                    "start": {
+                                      "column": 5,
+                                      "line": 49,
+                                      "offset": 517,
+                                    },
+                                  },
+                                  "type": "text",
+                                  "value": "ここは入れ子のリスト",
+                                },
+                              ],
+                              "position": {
+                                "end": {
+                                  "column": 15,
+                                  "line": 49,
+                                  "offset": 527,
+                                },
+                                "start": {
+                                  "column": 5,
+                                  "line": 49,
+                                  "offset": 517,
+                                },
+                              },
+                              "type": "paragraph",
+                            },
+                          ],
+                          "position": {
+                            "end": {
+                              "column": 15,
+                              "line": 49,
+                              "offset": 527,
+                            },
+                            "start": {
+                              "column": 3,
+                              "line": 49,
+                              "offset": 515,
+                            },
+                          },
+                          "type": "listItem",
+                        },
+                      ],
+                      "position": {
+                        "end": {
+                          "column": 15,
+                          "line": 49,
+                          "offset": 527,
+                        },
+                        "start": {
+                          "column": 3,
+                          "line": 48,
+                          "offset": 504,
+                        },
+                      },
+                      "type": "unorderedList",
+                    },
+                  ],
+                  "position": {
+                    "end": {
+                      "column": 15,
+                      "line": 49,
+                      "offset": 527,
+                    },
+                    "start": {
+                      "column": 1,
+                      "line": 47,
+                      "offset": 467,
+                    },
+                  },
+                  "type": "listItem",
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "position": {
+                            "end": {
+                              "column": 15,
+                              "line": 50,
+                              "offset": 542,
+                            },
+                            "start": {
+                              "column": 3,
+                              "line": 50,
+                              "offset": 530,
+                            },
+                          },
+                          "type": "text",
+                          "value": "リストの中で引用もできる",
+                        },
+                      ],
+                      "position": {
+                        "end": {
+                          "column": 15,
+                          "line": 50,
+                          "offset": 542,
+                        },
+                        "start": {
+                          "column": 3,
+                          "line": 50,
+                          "offset": 530,
+                        },
+                      },
+                      "type": "paragraph",
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "position": {
+                                        "end": {
+                                          "column": 11,
+                                          "line": 51,
+                                          "offset": 553,
+                                        },
+                                        "start": {
+                                          "column": 7,
+                                          "line": 51,
+                                          "offset": 549,
+                                        },
+                                      },
+                                      "type": "text",
+                                      "value": "引用は ",
+                                    },
+                                    {
+                                      "position": {
+                                        "end": {
+                                          "column": 25,
+                                          "line": 51,
+                                          "offset": 567,
+                                        },
+                                        "start": {
+                                          "column": 11,
+                                          "line": 51,
+                                          "offset": 553,
+                                        },
+                                      },
+                                      "type": "inlineCode",
+                                      "value": "<blockquote>",
+                                    },
+                                    {
+                                      "position": {
+                                        "end": {
+                                          "column": 34,
+                                          "line": 51,
+                                          "offset": 576,
+                                        },
+                                        "start": {
+                                          "column": 25,
+                                          "line": 51,
+                                          "offset": 567,
+                                        },
+                                      },
+                                      "type": "text",
+                                      "value": " を用いて表現する",
+                                    },
+                                  ],
+                                  "position": {
+                                    "end": {
+                                      "column": 34,
+                                      "line": 51,
+                                      "offset": 576,
+                                    },
+                                    "start": {
+                                      "column": 7,
+                                      "line": 51,
+                                      "offset": 549,
+                                    },
+                                  },
+                                  "type": "paragraph",
+                                },
+                              ],
+                              "position": {
+                                "end": {
+                                  "column": 34,
+                                  "line": 51,
+                                  "offset": 576,
+                                },
+                                "start": {
+                                  "column": 5,
+                                  "line": 51,
+                                  "offset": 547,
+                                },
+                              },
+                              "type": "blockquote",
+                            },
+                          ],
+                          "position": {
+                            "end": {
+                              "column": 34,
+                              "line": 51,
+                              "offset": 576,
+                            },
+                            "start": {
+                              "column": 3,
+                              "line": 51,
+                              "offset": 545,
+                            },
+                          },
+                          "type": "listItem",
+                        },
+                      ],
+                      "position": {
+                        "end": {
+                          "column": 34,
+                          "line": 51,
+                          "offset": 576,
+                        },
+                        "start": {
+                          "column": 3,
+                          "line": 51,
+                          "offset": 545,
+                        },
+                      },
+                      "type": "unorderedList",
+                    },
+                  ],
+                  "position": {
+                    "end": {
+                      "column": 34,
+                      "line": 51,
+                      "offset": 576,
+                    },
+                    "start": {
+                      "column": 1,
+                      "line": 50,
+                      "offset": 528,
+                    },
+                  },
+                  "type": "listItem",
+                },
+              ],
+              "position": {
+                "end": {
+                  "column": 34,
+                  "line": 51,
+                  "offset": 576,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 46,
+                  "offset": 458,
+                },
+              },
+              "type": "unorderedList",
+            },
+          ],
+          "position": {
+            "end": {
+              "column": 34,
+              "line": 51,
+              "offset": 576,
+            },
+            "start": {
+              "column": 1,
+              "line": 37,
+              "offset": 395,
+            },
+          },
+          "type": "section",
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "position": {
+                    "end": {
+                      "column": 10,
+                      "line": 53,
+                      "offset": 587,
+                    },
+                    "start": {
+                      "column": 5,
+                      "line": 53,
+                      "offset": 582,
+                    },
+                  },
+                  "type": "text",
+                  "value": "定義リスト",
+                },
+              ],
+              "id": "定義リスト",
+              "level": 3,
+              "plain": "定義リスト",
+              "position": {
+                "end": {
+                  "column": 10,
+                  "line": 53,
+                  "offset": 587,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 53,
+                  "offset": 578,
+                },
+              },
+              "type": "heading",
+            },
+            {
+              "children": [
+                {
+                  "position": {
+                    "end": {
+                      "column": 8,
+                      "line": 55,
+                      "offset": 596,
+                    },
+                    "start": {
+                      "column": 1,
+                      "line": 55,
+                      "offset": 589,
+                    },
+                  },
+                  "type": "text",
+                  "value": "定義リストは、",
+                },
+                {
+                  "position": {
+                    "end": {
+                      "column": 14,
+                      "line": 55,
+                      "offset": 602,
+                    },
+                    "start": {
+                      "column": 8,
+                      "line": 55,
+                      "offset": 596,
+                    },
+                  },
+                  "type": "inlineCode",
+                  "value": "<dl>",
+                },
+                {
+                  "position": {
+                    "end": {
+                      "column": 24,
+                      "line": 55,
+                      "offset": 612,
+                    },
+                    "start": {
+                      "column": 14,
+                      "line": 55,
+                      "offset": 602,
+                    },
+                  },
+                  "type": "text",
+                  "value": " を用いて表現する。",
+                },
+              ],
+              "position": {
+                "end": {
+                  "column": 24,
+                  "line": 55,
+                  "offset": 612,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 55,
+                  "offset": 589,
+                },
+              },
+              "type": "paragraph",
+            },
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "position": {
+                        "end": {
+                          "column": 9,
+                          "line": 57,
+                          "offset": 622,
+                        },
+                        "start": {
+                          "column": 3,
+                          "line": 57,
+                          "offset": 616,
+                        },
+                      },
+                      "type": "text",
+                      "value": "term 1",
+                    },
+                  ],
+                  "position": {
+                    "end": {
+                      "column": 10,
+                      "line": 57,
+                      "offset": 623,
+                    },
+                    "start": {
+                      "column": 1,
+                      "line": 57,
+                      "offset": 614,
+                    },
+                  },
+                  "type": "descriptionTerm",
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "position": {
+                            "end": {
+                              "column": 14,
+                              "line": 58,
+                              "offset": 637,
+                            },
+                            "start": {
+                              "column": 5,
+                              "line": 58,
+                              "offset": 628,
+                            },
+                          },
+                          "type": "text",
+                          "value": "details 1",
+                        },
+                      ],
+                      "position": {
+                        "end": {
+                          "column": 14,
+                          "line": 58,
+                          "offset": 637,
+                        },
+                        "start": {
+                          "column": 5,
+                          "line": 58,
+                          "offset": 628,
+                        },
+                      },
+                      "type": "paragraph",
+                    },
+                  ],
+                  "position": {
+                    "end": {
+                      "column": 14,
+                      "line": 58,
+                      "offset": 637,
+                    },
+                    "start": {
+                      "column": 3,
+                      "line": 58,
+                      "offset": 626,
+                    },
+                  },
+                  "type": "descriptionDetails",
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "position": {
+                            "end": {
+                              "column": 14,
+                              "line": 59,
+                              "offset": 651,
+                            },
+                            "start": {
+                              "column": 5,
+                              "line": 59,
+                              "offset": 642,
+                            },
+                          },
+                          "type": "text",
+                          "value": "details 2",
+                        },
+                      ],
+                      "position": {
+                        "end": {
+                          "column": 14,
+                          "line": 59,
+                          "offset": 651,
+                        },
+                        "start": {
+                          "column": 5,
+                          "line": 59,
+                          "offset": 642,
+                        },
+                      },
+                      "type": "paragraph",
+                    },
+                  ],
+                  "position": {
+                    "end": {
+                      "column": 14,
+                      "line": 59,
+                      "offset": 651,
+                    },
+                    "start": {
+                      "column": 3,
+                      "line": 59,
+                      "offset": 640,
+                    },
+                  },
+                  "type": "descriptionDetails",
+                },
+                {
+                  "children": [
+                    {
+                      "position": {
+                        "end": {
+                          "column": 9,
+                          "line": 60,
+                          "offset": 660,
+                        },
+                        "start": {
+                          "column": 3,
+                          "line": 60,
+                          "offset": 654,
+                        },
+                      },
+                      "type": "text",
+                      "value": "term 2",
+                    },
+                  ],
+                  "position": {
+                    "end": {
+                      "column": 10,
+                      "line": 60,
+                      "offset": 661,
+                    },
+                    "start": {
+                      "column": 1,
+                      "line": 60,
+                      "offset": 652,
+                    },
+                  },
+                  "type": "descriptionTerm",
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "position": {
+                            "end": {
+                              "column": 14,
+                              "line": 61,
+                              "offset": 675,
+                            },
+                            "start": {
+                              "column": 5,
+                              "line": 61,
+                              "offset": 666,
+                            },
+                          },
+                          "type": "text",
+                          "value": "details 3",
+                        },
+                      ],
+                      "position": {
+                        "end": {
+                          "column": 14,
+                          "line": 61,
+                          "offset": 675,
+                        },
+                        "start": {
+                          "column": 5,
+                          "line": 61,
+                          "offset": 666,
+                        },
+                      },
+                      "type": "paragraph",
+                    },
+                  ],
+                  "position": {
+                    "end": {
+                      "column": 14,
+                      "line": 61,
+                      "offset": 675,
+                    },
+                    "start": {
+                      "column": 3,
+                      "line": 61,
+                      "offset": 664,
+                    },
+                  },
+                  "type": "descriptionDetails",
+                },
+              ],
+              "position": {
+                "end": {
+                  "column": 14,
+                  "line": 61,
+                  "offset": 675,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 57,
+                  "offset": 614,
+                },
+              },
+              "type": "descriptionList",
+            },
+          ],
+          "position": {
+            "end": {
+              "column": 14,
+              "line": 61,
+              "offset": 675,
+            },
+            "start": {
+              "column": 1,
+              "line": 53,
+              "offset": 578,
+            },
+          },
+          "type": "section",
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "position": {
+                    "end": {
+                      "column": 7,
+                      "line": 63,
+                      "offset": 683,
+                    },
+                    "start": {
+                      "column": 5,
+                      "line": 63,
+                      "offset": 681,
+                    },
+                  },
+                  "type": "text",
+                  "value": "引用",
+                },
+              ],
+              "id": "引用",
+              "level": 3,
+              "plain": "引用",
+              "position": {
+                "end": {
+                  "column": 7,
+                  "line": 63,
+                  "offset": 683,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 63,
+                  "offset": 677,
+                },
+              },
+              "type": "heading",
+            },
+            {
+              "children": [
+                {
+                  "position": {
+                    "end": {
+                      "column": 5,
+                      "line": 65,
+                      "offset": 689,
+                    },
+                    "start": {
+                      "column": 1,
+                      "line": 65,
+                      "offset": 685,
+                    },
+                  },
+                  "type": "text",
+                  "value": "引用は ",
+                },
+                {
+                  "position": {
+                    "end": {
+                      "column": 19,
+                      "line": 65,
+                      "offset": 703,
+                    },
+                    "start": {
+                      "column": 5,
+                      "line": 65,
+                      "offset": 689,
+                    },
+                  },
+                  "type": "inlineCode",
+                  "value": "<blockquote>",
+                },
+                {
+                  "position": {
+                    "end": {
+                      "column": 29,
+                      "line": 65,
+                      "offset": 713,
+                    },
+                    "start": {
+                      "column": 19,
+                      "line": 65,
+                      "offset": 703,
+                    },
+                  },
+                  "type": "text",
+                  "value": " を用いて表現する。",
+                },
+              ],
+              "position": {
+                "end": {
+                  "column": 29,
+                  "line": 65,
+                  "offset": 713,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 65,
+                  "offset": 685,
+                },
+              },
+              "type": "paragraph",
+            },
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "position": {
+                        "end": {
+                          "column": 12,
+                          "line": 67,
+                          "offset": 726,
+                        },
+                        "start": {
+                          "column": 3,
+                          "line": 67,
+                          "offset": 717,
+                        },
+                      },
+                      "type": "text",
+                      "value": "これは引用である。",
+                    },
+                  ],
+                  "position": {
+                    "end": {
+                      "column": 12,
+                      "line": 67,
+                      "offset": 726,
+                    },
+                    "start": {
+                      "column": 3,
+                      "line": 67,
+                      "offset": 717,
+                    },
+                  },
+                  "type": "paragraph",
+                },
+                {
+                  "children": [
+                    {
+                      "position": {
+                        "end": {
+                          "column": 20,
+                          "line": 69,
+                          "offset": 748,
+                        },
+                        "start": {
+                          "column": 3,
+                          "line": 69,
+                          "offset": 731,
+                        },
+                      },
+                      "type": "text",
+                      "value": "複数行にまたがる引用も可能である。",
+                    },
+                  ],
+                  "position": {
+                    "end": {
+                      "column": 20,
+                      "line": 69,
+                      "offset": 748,
+                    },
+                    "start": {
+                      "column": 3,
+                      "line": 69,
+                      "offset": 731,
+                    },
+                  },
+                  "type": "paragraph",
+                },
+                {
+                  "children": [
+                    {
+                      "position": {
+                        "end": {
+                          "column": 7,
+                          "line": 71,
+                          "offset": 757,
+                        },
+                        "start": {
+                          "column": 3,
+                          "line": 71,
+                          "offset": 753,
+                        },
+                      },
+                      "type": "text",
+                      "value": "--- ",
+                    },
+                    {
+                      "children": [
+                        {
+                          "position": {
+                            "end": {
+                              "column": 26,
+                              "line": 71,
+                              "offset": 776,
+                            },
+                            "start": {
+                              "column": 7,
+                              "line": 71,
+                              "offset": 757,
+                            },
+                          },
+                          "type": "text",
+                          "value": "https://example.com",
+                        },
+                      ],
+                      "position": {
+                        "end": {
+                          "column": 26,
+                          "line": 71,
+                          "offset": 776,
+                        },
+                        "start": {
+                          "column": 7,
+                          "line": 71,
+                          "offset": 757,
+                        },
+                      },
+                      "title": undefined,
+                      "type": "link",
+                      "url": "https://example.com",
+                    },
+                  ],
+                  "position": {
+                    "end": {
+                      "column": 26,
+                      "line": 71,
+                      "offset": 776,
+                    },
+                    "start": {
+                      "column": 3,
+                      "line": 71,
+                      "offset": 753,
+                    },
+                  },
+                  "type": "paragraph",
+                },
+              ],
+              "position": {
+                "end": {
+                  "column": 26,
+                  "line": 71,
+                  "offset": 776,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 67,
+                  "offset": 715,
+                },
+              },
+              "type": "blockquote",
+            },
+          ],
+          "position": {
+            "end": {
+              "column": 26,
+              "line": 71,
+              "offset": 776,
+            },
+            "start": {
+              "column": 1,
+              "line": 63,
+              "offset": 677,
+            },
+          },
+          "type": "section",
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "position": {
+                    "end": {
+                      "column": 9,
+                      "line": 73,
+                      "offset": 786,
+                    },
+                    "start": {
+                      "column": 5,
+                      "line": 73,
+                      "offset": 782,
+                    },
+                  },
+                  "type": "text",
+                  "value": "テーブル",
+                },
+              ],
+              "id": "テーブル",
+              "level": 3,
+              "plain": "テーブル",
+              "position": {
+                "end": {
+                  "column": 9,
+                  "line": 73,
+                  "offset": 786,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 73,
+                  "offset": 778,
+                },
+              },
+              "type": "heading",
+            },
+            {
+              "children": [
+                {
+                  "position": {
+                    "end": {
+                      "column": 7,
+                      "line": 75,
+                      "offset": 794,
+                    },
+                    "start": {
+                      "column": 1,
+                      "line": 75,
+                      "offset": 788,
+                    },
+                  },
+                  "type": "text",
+                  "value": "テーブルは ",
+                },
+                {
+                  "position": {
+                    "end": {
+                      "column": 16,
+                      "line": 75,
+                      "offset": 803,
+                    },
+                    "start": {
+                      "column": 7,
+                      "line": 75,
+                      "offset": 794,
+                    },
+                  },
+                  "type": "inlineCode",
+                  "value": "<table>",
+                },
+                {
+                  "position": {
+                    "end": {
+                      "column": 26,
+                      "line": 75,
+                      "offset": 813,
+                    },
+                    "start": {
+                      "column": 16,
+                      "line": 75,
+                      "offset": 803,
+                    },
+                  },
+                  "type": "text",
+                  "value": " を用いて表現する。",
+                },
+              ],
+              "position": {
+                "end": {
+                  "column": 26,
+                  "line": 75,
+                  "offset": 813,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 75,
+                  "offset": 788,
+                },
+              },
+              "type": "paragraph",
+            },
+            {
+              "align": [
+                "left",
+                "right",
+                "right",
+              ],
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "position": {
+                            "end": {
+                              "column": 12,
+                              "line": 77,
+                              "offset": 826,
+                            },
+                            "start": {
+                              "column": 3,
+                              "line": 77,
+                              "offset": 817,
+                            },
+                          },
+                          "type": "text",
+                          "value": "file type",
+                        },
+                      ],
+                      "position": {
+                        "end": {
+                          "column": 13,
+                          "line": 77,
+                          "offset": 827,
+                        },
+                        "start": {
+                          "column": 1,
+                          "line": 77,
+                          "offset": 815,
+                        },
+                      },
+                      "type": "tableCell",
+                    },
+                    {
+                      "children": [
+                        {
+                          "position": {
+                            "end": {
+                              "column": 19,
+                              "line": 77,
+                              "offset": 833,
+                            },
+                            "start": {
+                              "column": 15,
+                              "line": 77,
+                              "offset": 829,
+                            },
+                          },
+                          "type": "text",
+                          "value": "size",
+                        },
+                      ],
+                      "position": {
+                        "end": {
+                          "column": 20,
+                          "line": 77,
+                          "offset": 834,
+                        },
+                        "start": {
+                          "column": 13,
+                          "line": 77,
+                          "offset": 827,
+                        },
+                      },
+                      "type": "tableCell",
+                    },
+                    {
+                      "children": [
+                        {
+                          "position": {
+                            "end": {
+                              "column": 27,
+                              "line": 77,
+                              "offset": 841,
+                            },
+                            "start": {
+                              "column": 22,
+                              "line": 77,
+                              "offset": 836,
+                            },
+                          },
+                          "type": "text",
+                          "value": "ratio",
+                        },
+                      ],
+                      "position": {
+                        "end": {
+                          "column": 29,
+                          "line": 77,
+                          "offset": 843,
+                        },
+                        "start": {
+                          "column": 20,
+                          "line": 77,
+                          "offset": 834,
+                        },
+                      },
+                      "type": "tableCell",
+                    },
+                  ],
+                  "position": {
+                    "end": {
+                      "column": 29,
+                      "line": 77,
+                      "offset": 843,
+                    },
+                    "start": {
+                      "column": 1,
+                      "line": 77,
+                      "offset": 815,
+                    },
+                  },
+                  "type": "tableRow",
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "position": {
+                            "end": {
+                              "column": 8,
+                              "line": 79,
+                              "offset": 880,
+                            },
+                            "start": {
+                              "column": 3,
+                              "line": 79,
+                              "offset": 875,
+                            },
+                          },
+                          "type": "text",
+                          "value": ".webp",
+                        },
+                      ],
+                      "position": {
+                        "end": {
+                          "column": 13,
+                          "line": 79,
+                          "offset": 885,
+                        },
+                        "start": {
+                          "column": 1,
+                          "line": 79,
+                          "offset": 873,
+                        },
+                      },
+                      "type": "tableCell",
+                    },
+                    {
+                      "children": [
+                        {
+                          "position": {
+                            "end": {
+                              "column": 19,
+                              "line": 79,
+                              "offset": 891,
+                            },
+                            "start": {
+                              "column": 15,
+                              "line": 79,
+                              "offset": 887,
+                            },
+                          },
+                          "type": "text",
+                          "value": "9503",
+                        },
+                      ],
+                      "position": {
+                        "end": {
+                          "column": 20,
+                          "line": 79,
+                          "offset": 892,
+                        },
+                        "start": {
+                          "column": 13,
+                          "line": 79,
+                          "offset": 885,
+                        },
+                      },
+                      "type": "tableCell",
+                    },
+                    {
+                      "children": [
+                        {
+                          "position": {
+                            "end": {
+                              "column": 27,
+                              "line": 79,
+                              "offset": 899,
+                            },
+                            "start": {
+                              "column": 23,
+                              "line": 79,
+                              "offset": 895,
+                            },
+                          },
+                          "type": "text",
+                          "value": "100%",
+                        },
+                      ],
+                      "position": {
+                        "end": {
+                          "column": 29,
+                          "line": 79,
+                          "offset": 901,
+                        },
+                        "start": {
+                          "column": 20,
+                          "line": 79,
+                          "offset": 892,
+                        },
+                      },
+                      "type": "tableCell",
+                    },
+                  ],
+                  "position": {
+                    "end": {
+                      "column": 29,
+                      "line": 79,
+                      "offset": 901,
+                    },
+                    "start": {
+                      "column": 1,
+                      "line": 79,
+                      "offset": 873,
+                    },
+                  },
+                  "type": "tableRow",
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "position": {
+                            "end": {
+                              "column": 11,
+                              "line": 80,
+                              "offset": 912,
+                            },
+                            "start": {
+                              "column": 3,
+                              "line": 80,
+                              "offset": 904,
+                            },
+                          },
+                          "type": "text",
+                          "value": ".webp.gz",
+                        },
+                      ],
+                      "position": {
+                        "end": {
+                          "column": 13,
+                          "line": 80,
+                          "offset": 914,
+                        },
+                        "start": {
+                          "column": 1,
+                          "line": 80,
+                          "offset": 902,
+                        },
+                      },
+                      "type": "tableCell",
+                    },
+                    {
+                      "children": [
+                        {
+                          "position": {
+                            "end": {
+                              "column": 19,
+                              "line": 80,
+                              "offset": 920,
+                            },
+                            "start": {
+                              "column": 15,
+                              "line": 80,
+                              "offset": 916,
+                            },
+                          },
+                          "type": "text",
+                          "value": "2608",
+                        },
+                      ],
+                      "position": {
+                        "end": {
+                          "column": 20,
+                          "line": 80,
+                          "offset": 921,
+                        },
+                        "start": {
+                          "column": 13,
+                          "line": 80,
+                          "offset": 914,
+                        },
+                      },
+                      "type": "tableCell",
+                    },
+                    {
+                      "children": [
+                        {
+                          "position": {
+                            "end": {
+                              "column": 27,
+                              "line": 80,
+                              "offset": 928,
+                            },
+                            "start": {
+                              "column": 24,
+                              "line": 80,
+                              "offset": 925,
+                            },
+                          },
+                          "type": "text",
+                          "value": "28%",
+                        },
+                      ],
+                      "position": {
+                        "end": {
+                          "column": 29,
+                          "line": 80,
+                          "offset": 930,
+                        },
+                        "start": {
+                          "column": 20,
+                          "line": 80,
+                          "offset": 921,
+                        },
+                      },
+                      "type": "tableCell",
+                    },
+                  ],
+                  "position": {
+                    "end": {
+                      "column": 29,
+                      "line": 80,
+                      "offset": 930,
+                    },
+                    "start": {
+                      "column": 1,
+                      "line": 80,
+                      "offset": 902,
+                    },
+                  },
+                  "type": "tableRow",
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "position": {
+                            "end": {
+                              "column": 11,
+                              "line": 81,
+                              "offset": 941,
+                            },
+                            "start": {
+                              "column": 3,
+                              "line": 81,
+                              "offset": 933,
+                            },
+                          },
+                          "type": "text",
+                          "value": ".webp.br",
+                        },
+                      ],
+                      "position": {
+                        "end": {
+                          "column": 13,
+                          "line": 81,
+                          "offset": 943,
+                        },
+                        "start": {
+                          "column": 1,
+                          "line": 81,
+                          "offset": 931,
+                        },
+                      },
+                      "type": "tableCell",
+                    },
+                    {
+                      "children": [
+                        {
+                          "position": {
+                            "end": {
+                              "column": 19,
+                              "line": 81,
+                              "offset": 949,
+                            },
+                            "start": {
+                              "column": 15,
+                              "line": 81,
+                              "offset": 945,
+                            },
+                          },
+                          "type": "text",
+                          "value": "2433",
+                        },
+                      ],
+                      "position": {
+                        "end": {
+                          "column": 20,
+                          "line": 81,
+                          "offset": 950,
+                        },
+                        "start": {
+                          "column": 13,
+                          "line": 81,
+                          "offset": 943,
+                        },
+                      },
+                      "type": "tableCell",
+                    },
+                    {
+                      "children": [
+                        {
+                          "position": {
+                            "end": {
+                              "column": 27,
+                              "line": 81,
+                              "offset": 957,
+                            },
+                            "start": {
+                              "column": 24,
+                              "line": 81,
+                              "offset": 954,
+                            },
+                          },
+                          "type": "text",
+                          "value": "27%",
+                        },
+                      ],
+                      "position": {
+                        "end": {
+                          "column": 29,
+                          "line": 81,
+                          "offset": 959,
+                        },
+                        "start": {
+                          "column": 20,
+                          "line": 81,
+                          "offset": 950,
+                        },
+                      },
+                      "type": "tableCell",
+                    },
+                  ],
+                  "position": {
+                    "end": {
+                      "column": 29,
+                      "line": 81,
+                      "offset": 959,
+                    },
+                    "start": {
+                      "column": 1,
+                      "line": 81,
+                      "offset": 931,
+                    },
+                  },
+                  "type": "tableRow",
+                },
+              ],
+              "position": {
+                "end": {
+                  "column": 29,
+                  "line": 81,
+                  "offset": 959,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 77,
+                  "offset": 815,
+                },
+              },
+              "type": "table",
+            },
+            {
+              "children": [
+                {
+                  "position": {
+                    "end": {
+                      "column": 12,
+                      "line": 83,
+                      "offset": 972,
+                    },
+                    "start": {
+                      "column": 1,
+                      "line": 83,
+                      "offset": 961,
+                    },
+                  },
+                  "type": "text",
+                  "value": "テーブルのデザインは ",
+                },
+                {
+                  "children": [
+                    {
+                      "position": {
+                        "end": {
+                          "column": 17,
+                          "line": 83,
+                          "offset": 977,
+                        },
+                        "start": {
+                          "column": 13,
+                          "line": 83,
+                          "offset": 973,
+                        },
+                      },
+                      "type": "text",
+                      "value": "jxck",
+                    },
+                  ],
+                  "position": {
+                    "end": {
+                      "column": 45,
+                      "line": 83,
+                      "offset": 1005,
+                    },
+                    "start": {
+                      "column": 12,
+                      "line": 83,
+                      "offset": 972,
+                    },
+                  },
+                  "title": undefined,
+                  "type": "link",
+                  "url": "https://twitter.com/Jxck_",
+                },
+                {
+                  "position": {
+                    "end": {
+                      "column": 50,
+                      "line": 83,
+                      "offset": 1010,
+                    },
+                    "start": {
+                      "column": 45,
+                      "line": 83,
+                      "offset": 1005,
+                    },
+                  },
+                  "type": "text",
+                  "value": " さんの ",
+                },
+                {
+                  "children": [
+                    {
+                      "position": {
+                        "end": {
+                          "column": 59,
+                          "line": 83,
+                          "offset": 1019,
+                        },
+                        "start": {
+                          "column": 51,
+                          "line": 83,
+                          "offset": 1011,
+                        },
+                      },
+                      "type": "text",
+                      "value": "テーブルデザイン",
+                    },
+                  ],
+                  "position": {
+                    "end": {
+                      "column": 131,
+                      "line": 83,
+                      "offset": 1091,
+                    },
+                    "start": {
+                      "column": 50,
+                      "line": 83,
+                      "offset": 1010,
+                    },
+                  },
+                  "title": undefined,
+                  "type": "link",
+                  "url": "https://blog.jxck.io/entries/2022-03-06/markdown-style-table-css.html",
+                },
+                {
+                  "position": {
+                    "end": {
+                      "column": 139,
+                      "line": 83,
+                      "offset": 1099,
+                    },
+                    "start": {
+                      "column": 131,
+                      "line": 83,
+                      "offset": 1091,
+                    },
+                  },
+                  "type": "text",
+                  "value": " を参考にした。",
+                },
+              ],
+              "position": {
+                "end": {
+                  "column": 139,
+                  "line": 83,
+                  "offset": 1099,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 83,
+                  "offset": 961,
+                },
+              },
+              "type": "paragraph",
+            },
+          ],
+          "position": {
+            "end": {
+              "column": 139,
+              "line": 83,
+              "offset": 1099,
+            },
+            "start": {
+              "column": 1,
+              "line": 73,
+              "offset": 778,
+            },
+          },
+          "type": "section",
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "position": {
+                    "end": {
+                      "column": 7,
+                      "line": 85,
+                      "offset": 1107,
+                    },
+                    "start": {
+                      "column": 5,
+                      "line": 85,
+                      "offset": 1105,
+                    },
+                  },
+                  "type": "text",
+                  "value": "画像",
+                },
+              ],
+              "id": "画像",
+              "level": 3,
+              "plain": "画像",
+              "position": {
+                "end": {
+                  "column": 7,
+                  "line": 85,
+                  "offset": 1107,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 85,
+                  "offset": 1101,
+                },
+              },
+              "type": "heading",
+            },
+            {
+              "children": [
+                {
+                  "position": {
+                    "end": {
+                      "column": 5,
+                      "line": 87,
+                      "offset": 1113,
+                    },
+                    "start": {
+                      "column": 1,
+                      "line": 87,
+                      "offset": 1109,
+                    },
+                  },
+                  "type": "text",
+                  "value": "画像は ",
+                },
+                {
+                  "position": {
+                    "end": {
+                      "column": 12,
+                      "line": 87,
+                      "offset": 1120,
+                    },
+                    "start": {
+                      "column": 5,
+                      "line": 87,
+                      "offset": 1113,
+                    },
+                  },
+                  "type": "inlineCode",
+                  "value": "<img>",
+                },
+                {
+                  "position": {
+                    "end": {
+                      "column": 22,
+                      "line": 87,
+                      "offset": 1130,
+                    },
+                    "start": {
+                      "column": 12,
+                      "line": 87,
+                      "offset": 1120,
+                    },
+                  },
+                  "type": "text",
+                  "value": " を用いて表現する。",
+                },
+              ],
+              "position": {
+                "end": {
+                  "column": 22,
+                  "line": 87,
+                  "offset": 1130,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 87,
+                  "offset": 1109,
+                },
+              },
+              "type": "paragraph",
+            },
+            {
+              "children": [
+                {
+                  "alt": "my icon",
+                  "position": {
+                    "end": {
+                      "column": 26,
+                      "line": 89,
+                      "offset": 1157,
+                    },
+                    "start": {
+                      "column": 1,
+                      "line": 89,
+                      "offset": 1132,
+                    },
+                  },
+                  "title": undefined,
+                  "type": "image",
+                  "url": "./rintaro.jpg",
+                },
+              ],
+              "position": {
+                "end": {
+                  "column": 26,
+                  "line": 89,
+                  "offset": 1157,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 89,
+                  "offset": 1132,
+                },
+              },
+              "type": "paragraph",
+            },
+          ],
+          "position": {
+            "end": {
+              "column": 26,
+              "line": 89,
+              "offset": 1157,
+            },
+            "start": {
+              "column": 1,
+              "line": 85,
+              "offset": 1101,
+            },
+          },
+          "type": "section",
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "position": {
+                    "end": {
+                      "column": 8,
+                      "line": 91,
+                      "offset": 1166,
+                    },
+                    "start": {
+                      "column": 5,
+                      "line": 91,
+                      "offset": 1163,
+                    },
+                  },
+                  "type": "text",
+                  "value": "コード",
+                },
+              ],
+              "id": "コード",
+              "level": 3,
+              "plain": "コード",
+              "position": {
+                "end": {
+                  "column": 8,
+                  "line": 91,
+                  "offset": 1166,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 91,
+                  "offset": 1159,
+                },
+              },
+              "type": "heading",
+            },
+            {
+              "children": [
+                {
+                  "position": {
+                    "end": {
+                      "column": 6,
+                      "line": 93,
+                      "offset": 1173,
+                    },
+                    "start": {
+                      "column": 1,
+                      "line": 93,
+                      "offset": 1168,
+                    },
+                  },
+                  "type": "text",
+                  "value": "コードは ",
+                },
+                {
+                  "position": {
+                    "end": {
+                      "column": 14,
+                      "line": 93,
+                      "offset": 1181,
+                    },
+                    "start": {
+                      "column": 6,
+                      "line": 93,
+                      "offset": 1173,
+                    },
+                  },
+                  "type": "inlineCode",
+                  "value": "<code>",
+                },
+                {
+                  "position": {
+                    "end": {
+                      "column": 24,
+                      "line": 93,
+                      "offset": 1191,
+                    },
+                    "start": {
+                      "column": 14,
+                      "line": 93,
+                      "offset": 1181,
+                    },
+                  },
+                  "type": "text",
+                  "value": " を用いて表現する。",
+                },
+              ],
+              "position": {
+                "end": {
+                  "column": 24,
+                  "line": 93,
+                  "offset": 1191,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 93,
+                  "offset": 1168,
+                },
+              },
+              "type": "paragraph",
+            },
+            {
+              "filename": "main.rs rs",
+              "lang": "rs",
+              "position": {
+                "end": {
+                  "column": 4,
+                  "line": 326,
+                  "offset": 8918,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 95,
+                  "offset": 1193,
+                },
+              },
+              "type": "code",
+              "value": "use std::net::{SocketAddr, SocketAddrV4};
+use std::time::Duration;
+
+use axum::extract::DefaultBodyLimit;
+use axum::http::{header, HeaderValue, Method};
+use axum::Router;
+use cfg_if::cfg_if;
+use repaint_server_core::SeaOrm;
+use repaint_server_firestore::Firestore;
+use repaint_server_gcs::Gcs;
+use repaint_server_otp::Otp;
+use repaint_server_pubsub::PubSub;
+use repaint_server_usecase::usecase::admin::AdminUsecaseImpl;
+use repaint_server_usecase::usecase::event::EventUsecaseImpl;
+use repaint_server_usecase::usecase::image::ImageUsecaseImpl;
+use repaint_server_usecase::usecase::palette::PaletteUsecaseImpl;
+use repaint_server_usecase::usecase::spot::SpotUsecaseImpl;
+use repaint_server_usecase::usecase::traffic::TrafficUsecaseImpl;
+use repaint_server_usecase::usecase::visitor::VisitorUsecaseImpl;
+use repaint_server_util::{envvar, envvar_str};
+use teloc::{Resolver, ServiceProvider};
+use tokio::signal;
+use tokio::sync::oneshot;
+use tower_http::cors::CorsLayer;
+use tracing_subscriber::fmt;
+
+use crate::routes::admin::admin;
+use crate::routes::healthz::healthz;
+use crate::routes::license::license;
+use crate::routes::metrics::metrics;
+use crate::routes::version::version;
+use crate::routes::visitor::visitor;
+
+mod middleware;
+mod routes;
+
+#[tokio::main]
+async fn main() {
+    dotenvy::dotenv().ok();
+    tracing_subscriber::fmt()
+        .event_format(fmt::format::json())
+        .init();
+
+    let addr: SocketAddr = SocketAddr::V4(SocketAddrV4::new(
+        envvar("LISTEN_IP_ADDR", Some([127, 0, 0, 1].into())),
+        envvar("PORT", 4000),
+    ));
+    let db_url = envvar_str("DATABASE_URL", None);
+    let db = SeaOrm::new(db_url).await.expect("couldn't connect to db");
+
+    let container = ServiceProvider::new()
+        .add_singleton::<SeaOrm>()
+        .add_singleton::<FirestoreProvider>()
+        .add_singleton::<GcsProvider>()
+        .add_singleton::<OtpProvider>()
+        .add_singleton::<PubSubProvider>()
+        .add_singleton::<EmailProvider>()
+        .add_transient::<AdminUsecaseImpl<SeaOrm, FirestoreProvider, EmailProvider>>()
+        .add_transient::<EventUsecaseImpl<SeaOrm, FirestoreProvider>>()
+        .add_transient::<ImageUsecaseImpl<SeaOrm, GcsProvider, OtpProvider, PubSubProvider>>()
+        .add_transient::<PaletteUsecaseImpl<SeaOrm, PubSubProvider>>()
+        .add_transient::<SpotUsecaseImpl<SeaOrm, FirestoreProvider, PubSubProvider>>()
+        .add_transient::<TrafficUsecaseImpl<SeaOrm, PubSubProvider>>()
+        .add_transient::<VisitorUsecaseImpl<SeaOrm, PubSubProvider>>()
+        .add_instance(db)
+        .add_instance(firestore_provider().await)
+        .add_instance(gcs_provider().await)
+        .add_instance(otp_provider())
+        .add_instance(pubsub_provider().await)
+        .add_instance(email_provider());
+
+    let admin_usecase: AdminUsecaseImpl<_, _, _> = container.resolve();
+    let event_usecase: EventUsecaseImpl<_, _> = container.resolve();
+    let image_usecase: ImageUsecaseImpl<_, _, _, _> = container.resolve();
+    let palette_usecase: PaletteUsecaseImpl<_, _> = container.resolve();
+    let spot_usecase: SpotUsecaseImpl<_, _, _> = container.resolve();
+    let traffic_usecase: TrafficUsecaseImpl<_, _> = container.resolve();
+    let visitor_usecase: VisitorUsecaseImpl<_, _> = container.resolve();
+
+    let app = Router::new()
+        .nest(
+            "/admin",
+            admin(
+                admin_usecase,
+                event_usecase,
+                traffic_usecase,
+                spot_usecase.clone(),
+                image_usecase.clone(),
+            ),
+        )
+        .nest(
+            "/visitor",
+            visitor(
+                visitor_usecase,
+                palette_usecase,
+                image_usecase,
+                spot_usecase,
+            ),
+        )
+        .merge(healthz())
+        .merge(version())
+        .merge(license())
+        .merge(metrics())
+        .layer(
+            CorsLayer::new()
+                .allow_headers(vec![header::CONTENT_TYPE, header::AUTHORIZATION])
+                .allow_methods(vec![
+                    Method::GET,
+                    Method::POST,
+                    Method::PATCH,
+                    Method::DELETE,
+                ])
+                .allow_origin(
+                    envvar_str("CORS_ALLOW_ORIGIN", "http://localhost:3000")
+                        .parse::<HeaderValue>()
+                        .expect("invalid CORS_ALLOW_ORIGIN"),
+                ),
+        )
+        .layer(DefaultBodyLimit::max(envvar("BODY_LIMIT", 2 * 1024 * 1024)));
+
+    tracing::info!("staring server at {addr}");
+
+    let (send, recv) = oneshot::channel();
+
+    tokio::select! {
+        _ = axum::Server::bind(&addr).serve(app.into_make_service()).with_graceful_shutdown(wait_for_shutdown_signal(send)) => {}
+
+        _ = recv => {
+            tracing::info!("graceful shutdown has timed out. forcing shutdown.");
+        }
+    }
+}
+
+async fn wait_for_shutdown_signal(force_shutdown_tx: oneshot::Sender<()>) {
+    let ctrl_c = async {
+        signal::ctrl_c()
+            .await
+            .expect("failed to install Ctrl+C handler");
+    };
+
+    #[cfg(unix)]
+    let terminate = async {
+        signal::unix::signal(signal::unix::SignalKind::terminate())
+            .expect("failed to install terminate signal handler")
+            .recv()
+            .await;
+    };
+
+    #[cfg(not(unix))]
+    let terminate = std::future::pending::<()>();
+
+    tokio::select! {
+        _ = ctrl_c => {},
+        _ = terminate => {},
+    }
+
+    tracing::info!("exit signal received, trying graceful shutdown");
+
+    // workaround for https://github.com/hyperium/hyper/issues/2787
+    tokio::spawn(async {
+        tokio::time::sleep(Duration::from_secs(3)).await;
+        force_shutdown_tx.send(()).unwrap();
+    });
+}
+
+type FirestoreProvider = Firestore;
+type GcsProvider = Gcs;
+type OtpProvider = Otp;
+type PubSubProvider = PubSub;
+
+async fn firestore_provider() -> FirestoreProvider {
+    let project_id = envvar_str("PROJECT_ID", None);
+
+    Firestore::new(project_id).await
+}
+
+async fn gcs_provider() -> GcsProvider {
+    let bucket = envvar_str("BUCKET", None);
+
+    Gcs::new(bucket).await
+}
+
+fn otp_provider() -> OtpProvider {
+    let origin = envvar_str("ORIGIN", None);
+    let url = envvar_str("IMAGE_URL", None);
+    let bucket = envvar_str("BUCKET", None);
+
+    Otp::new(origin, url, bucket)
+}
+
+async fn pubsub_provider() -> PubSubProvider {
+    let cluster = envvar("CLUSTER", None);
+    let clustering_topic = envvar_str("CLUSTERING_TOPIC", None);
+    let merge_topic = envvar_str("MERGE_TOPIC", None);
+    let notification_topic = envvar_str("NOTIFICATION_TOPIC", None);
+
+    PubSub::new(cluster, clustering_topic, merge_topic, notification_topic).await
+}
+
+cfg_if! {
+    if #[cfg(feature = "email_sg")] {
+        use repaint_server_sg::SendGrid;
+
+        type EmailProvider = SendGrid;
+
+        fn email_provider() -> EmailProvider {
+            let api_key = envvar_str("SENDGRID_API_KEY", None);
+            let send_from = envvar_str("SENDGRID_SEND_FROM", None);
+            let url = envvar_str("SENDGRID_URL", None);
+
+            SendGrid::new(api_key, send_from, url)
+        }
+    } else if #[cfg(feature = "email_gmail")] {
+        use repaint_server_gmail::Gmail;
+
+        type EmailProvider = Gmail;
+
+        fn email_provider() -> EmailProvider {
+            let send_from = envvar_str("GMAIL_SEND_FROM", None);
+            let url = envvar_str("GMAIL_URL", None);
+            let username = envvar_str("SMTP_USERNAME", None);
+            let password = envvar_str("SMTP_PASSWORD", None);
+
+            Gmail::new(send_from, url, username, password)
+        }
+    } else {
+        compile_error!("you must set one email provider");
+    }
+}
+",
+            },
+          ],
+          "position": {
+            "end": {
+              "column": 4,
+              "line": 326,
+              "offset": 8918,
+            },
+            "start": {
+              "column": 1,
+              "line": 91,
+              "offset": 1159,
+            },
+          },
+          "type": "section",
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "position": {
+                    "end": {
+                      "column": 10,
+                      "line": 328,
+                      "offset": 8929,
+                    },
+                    "start": {
+                      "column": 5,
+                      "line": 328,
+                      "offset": 8924,
+                    },
+                  },
+                  "type": "text",
+                  "value": "embed",
+                },
+              ],
+              "id": "embed",
+              "level": 3,
+              "plain": "embed",
+              "position": {
+                "end": {
+                  "column": 10,
+                  "line": 328,
+                  "offset": 8929,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 328,
+                  "offset": 8920,
+                },
+              },
+              "type": "heading",
+            },
+            {
+              "meta": {
+                "description": "Rintaro Itokawa (re-taro) のポートフォリオです。",
+                "favicon": "https://re-taro.dev/favicon.svg",
+                "open_graph": {
+                  "description": undefined,
+                  "images": [
+                    {
+                      "url": undefined,
+                    },
+                  ],
+                  "title": undefined,
+                  "type": undefined,
+                  "url": undefined,
+                },
+                "title": "re-taro",
+                "twitter_card": {
+                  "card": "summary_large_image",
+                  "creator": "@re_taro_",
+                  "description": "Rintaro Itokawa (re-taro) のポートフォリオです。",
+                  "images": [
+                    {
+                      "url": "https://og.re-taro.dev/?title=Rintaro+Itokawa&tmp=color&text=re-taro.dev",
+                    },
+                  ],
+                  "site": "@re_taro_",
+                  "title": "Rintaro Itokawa - Web Developer",
+                },
+              },
+              "oembed": undefined,
+              "position": {
+                "end": {
+                  "column": 20,
+                  "line": 330,
+                  "offset": 8950,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 330,
+                  "offset": 8931,
+                },
+              },
+              "src": "https://re-taro.dev/",
+              "type": "embed",
+            },
+            {
+              "allowFullScreen": undefined,
+              "height": "360",
+              "position": {
+                "end": {
+                  "column": 44,
+                  "line": 332,
+                  "offset": 8995,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 332,
+                  "offset": 8952,
+                },
+              },
+              "src": "https://www.youtube.com/embed/SHkF48SgiSA",
+              "type": "embed",
+              "width": "100%",
+            },
+            {
+              "allowFullScreen": true,
+              "height": undefined,
+              "position": {
+                "end": {
+                  "column": 101,
+                  "line": 334,
+                  "offset": 9097,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 334,
+                  "offset": 8997,
+                },
+              },
+              "src": "https://docs.google.com/presentation/d/1Jx4nQbzFk5BYTTZwuOMGQOd359G_orJU-OrG4Bg3ohg/embed",
+              "type": "embed",
+              "width": "100%",
+            },
+          ],
+          "position": {
+            "end": {
+              "column": 101,
+              "line": 334,
+              "offset": 9097,
+            },
+            "start": {
+              "column": 1,
+              "line": 328,
+              "offset": 8920,
+            },
+          },
+          "type": "section",
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "position": {
+                    "end": {
+                      "column": 11,
+                      "line": 336,
+                      "offset": 9109,
+                    },
+                    "start": {
+                      "column": 5,
+                      "line": 336,
+                      "offset": 9103,
+                    },
+                  },
+                  "type": "text",
+                  "value": "design",
+                },
+              ],
+              "id": "design",
+              "level": 3,
+              "plain": "design",
+              "position": {
+                "end": {
+                  "column": 11,
+                  "line": 336,
+                  "offset": 9109,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 336,
+                  "offset": 9099,
+                },
+              },
+              "type": "heading",
+            },
+            {
+              "children": [
+                {
+                  "position": {
+                    "end": {
+                      "column": 7,
+                      "line": 338,
+                      "offset": 9117,
+                    },
+                    "start": {
+                      "column": 1,
+                      "line": 338,
+                      "offset": 9111,
+                    },
+                  },
+                  "type": "text",
+                  "value": "ToC は ",
+                },
+                {
+                  "children": [
+                    {
+                      "position": {
+                        "end": {
+                          "column": 14,
+                          "line": 338,
+                          "offset": 9124,
+                        },
+                        "start": {
+                          "column": 8,
+                          "line": 338,
+                          "offset": 9118,
+                        },
+                      },
+                      "type": "text",
+                      "value": "しゅんちゃん",
+                    },
+                  ],
+                  "position": {
+                    "end": {
+                      "column": 48,
+                      "line": 338,
+                      "offset": 9158,
+                    },
+                    "start": {
+                      "column": 7,
+                      "line": 338,
+                      "offset": 9117,
+                    },
+                  },
+                  "title": undefined,
+                  "type": "link",
+                  "url": "https://twitter.com/shun_shobon",
+                },
+                {
+                  "position": {
+                    "end": {
+                      "column": 51,
+                      "line": 338,
+                      "offset": 9161,
+                    },
+                    "start": {
+                      "column": 48,
+                      "line": 338,
+                      "offset": 9158,
+                    },
+                  },
+                  "type": "text",
+                  "value": " の ",
+                },
+                {
+                  "children": [
+                    {
+                      "position": {
+                        "end": {
+                          "column": 55,
+                          "line": 338,
+                          "offset": 9165,
+                        },
+                        "start": {
+                          "column": 52,
+                          "line": 338,
+                          "offset": 9162,
+                        },
+                      },
+                      "type": "text",
+                      "value": "ブログ",
+                    },
+                  ],
+                  "position": {
+                    "end": {
+                      "column": 79,
+                      "line": 338,
+                      "offset": 9189,
+                    },
+                    "start": {
+                      "column": 51,
+                      "line": 338,
+                      "offset": 9161,
+                    },
+                  },
+                  "title": undefined,
+                  "type": "link",
+                  "url": "https://blog.s2n.tech",
+                },
+                {
+                  "position": {
+                    "end": {
+                      "column": 87,
+                      "line": 338,
+                      "offset": 9197,
+                    },
+                    "start": {
+                      "column": 79,
+                      "line": 338,
+                      "offset": 9189,
+                    },
+                  },
+                  "type": "text",
+                  "value": " を参考にした。",
+                },
+              ],
+              "position": {
+                "end": {
+                  "column": 87,
+                  "line": 338,
+                  "offset": 9197,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 338,
+                  "offset": 9111,
+                },
+              },
+              "type": "paragraph",
+            },
+          ],
+          "position": {
+            "end": {
+              "column": 87,
+              "line": 338,
+              "offset": 9197,
+            },
+            "start": {
+              "column": 1,
+              "line": 336,
+              "offset": 9099,
+            },
+          },
+          "type": "section",
+        },
+      ],
+      "position": {
+        "end": {
+          "column": 87,
+          "line": 338,
+          "offset": 9197,
+        },
+        "start": {
+          "column": 1,
+          "line": 7,
+          "offset": 50,
+        },
+      },
+      "type": "section",
+    },
+  ],
+  "footnotes": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "position": {
+                "end": {
+                  "column": 19,
+                  "line": 35,
+                  "offset": 393,
+                },
+                "start": {
+                  "column": 7,
+                  "line": 35,
+                  "offset": 381,
+                },
+              },
+              "type": "text",
+              "value": "これは脚注の内容である。",
+            },
+          ],
+          "position": {
+            "end": {
+              "column": 19,
+              "line": 35,
+              "offset": 393,
+            },
+            "start": {
+              "column": 7,
+              "line": 35,
+              "offset": 381,
+            },
+          },
+          "type": "paragraph",
+        },
+      ],
+      "count": 1,
+      "index": 0,
+      "position": {
+        "end": {
+          "column": 19,
+          "line": 35,
+          "offset": 393,
+        },
+        "start": {
+          "column": 1,
+          "line": 35,
+          "offset": 375,
+        },
+      },
+      "type": "footnoteDefinition",
+    },
+  ],
+  "title": {
+    "children": [
+      {
+        "position": {
+          "end": {
+            "column": 10,
+            "line": 1,
+            "offset": 9,
+          },
+          "start": {
+            "column": 3,
+            "line": 1,
+            "offset": 2,
+          },
+        },
+        "type": "text",
+        "value": "initial",
+      },
+    ],
+    "id": "initial",
+    "level": 1,
+    "plain": "initial",
+    "position": {
+      "end": {
+        "column": 10,
+        "line": 1,
+        "offset": 9,
+      },
+      "start": {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "type": "heading",
+  },
+  "toc": [
+    {
+      "children": [],
+      "id": "はじめに",
+      "plain": "はじめに",
+      "type": "toc",
+    },
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [],
+              "id": "heading-section-4",
+              "plain": "heading section 4",
+              "type": "toc",
+            },
+          ],
+          "id": "heading-section-3",
+          "plain": "heading section 3",
+          "type": "toc",
+        },
+        {
+          "children": [],
+          "id": "テキストの装飾",
+          "plain": "テキストの装飾",
+          "type": "toc",
+        },
+        {
+          "children": [],
+          "id": "脚注",
+          "plain": "脚注",
+          "type": "toc",
+        },
+        {
+          "children": [],
+          "id": "リスト",
+          "plain": "リスト",
+          "type": "toc",
+        },
+        {
+          "children": [],
+          "id": "定義リスト",
+          "plain": "定義リスト",
+          "type": "toc",
+        },
+        {
+          "children": [],
+          "id": "引用",
+          "plain": "引用",
+          "type": "toc",
+        },
+        {
+          "children": [],
+          "id": "テーブル",
+          "plain": "テーブル",
+          "type": "toc",
+        },
+        {
+          "children": [],
+          "id": "画像",
+          "plain": "画像",
+          "type": "toc",
+        },
+        {
+          "children": [],
+          "id": "コード",
+          "plain": "コード",
+          "type": "toc",
+        },
+        {
+          "children": [],
+          "id": "embed",
+          "plain": "embed",
+          "type": "toc",
+        },
+        {
+          "children": [],
+          "id": "design",
+          "plain": "design",
+          "type": "toc",
+        },
+      ],
+      "id": "テスト",
+      "plain": "テスト",
+      "type": "toc",
+    },
+  ],
+  "type": "article",
+}
+`;

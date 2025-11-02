@@ -12,21 +12,8 @@
 		"tsconfig.lib.json"
 	],
 	"scripts": {
-		"format": "wireit",
-		"lint": "wireit",
-		"lint:prettier": "wireit"
-	},
-	"wireit": {
-		"format": {
-			"command": "prettier --write ."
-		},
-		"lint": {
-			"dependencies": [
-				"lint:prettier"
-			]
-		},
-		"lint:prettier": {
-			"command": "prettier --check ."
-		}
+		"format": "prettier --write .",
+		"format:check": "prettier --check .",
+		"lint:eslint": "eslint ."
 	}
 }

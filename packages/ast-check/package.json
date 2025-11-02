@@ -16,50 +16,13 @@
 		"src"
 	],
 	"scripts": {
-		"build": "wireit",
-		"format": "wireit",
-		"lint:eslint": "wireit",
-		"lint:prettier": "wireit",
-		"lint:tsc": "wireit"
+		"build": "tsc -p . --incremental false",
+		"format": "prettier --write .",
+		"format:check": "prettier --check .",
+		"lint:script": "eslint .",
+		"typecheck": "tsc -p . --noEmit"
 	},
 	"dependencies": {
 		"ast": "workspace:*"
-	},
-	"wireit": {
-		"build": {
-			"command": "tsc -p . --incremental false",
-			"output": [
-				"./dist/**/*"
-			],
-			"files": [
-				"./src/**/*",
-				"./tsconfig.json"
-			],
-			"dependencies": [
-				"../ast:build"
-			]
-		},
-		"format": {
-			"command": "prettier --write ."
-		},
-		"lint": {
-			"dependencies": [
-				"lint:eslint",
-				"lint:prettier",
-				"lint:tsc"
-			]
-		},
-		"lint:eslint": {
-			"command": "eslint ."
-		},
-		"lint:prettier": {
-			"command": "prettier --check ."
-		},
-		"lint:tsc": {
-			"command": "tsc -p . --noEmit",
-			"dependencies": [
-				"../ast:build"
-			]
-		}
 	}
 }
