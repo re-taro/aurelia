@@ -3,11 +3,14 @@
 	"version": "3.0.0",
 	"type": "module",
 	"private": true,
+	"engines": {
+		"node": "24.11.0"
+	},
 	"exports": {
 		".": {
 			"default": {
-				"types": "./dist/index.d.ts",
-				"default": "./dist/index.js"
+				"types": "./dist/index.d.mts",
+				"default": "./dist/index.mjs"
 			}
 		}
 	},
@@ -16,13 +19,12 @@
 		"src"
 	],
 	"scripts": {
-		"build": "wireit",
-		"format": "wireit",
-		"lint": "wireit",
-		"lint:eslint": "wireit",
-		"lint:prettier": "wireit",
-		"lint:tsc": "wireit",
-		"test": "wireit"
+		"build": "tsdown src/index.ts --dts --minify",
+		"format": "prettier --write .",
+		"format:check": "prettier --check .",
+		"lint:script": "eslint .",
+		"test:unit": "vitest run",
+		"typecheck": "tsc -p . --noEmit"
 	},
 	"dependencies": {
 		"@types/unist": "catalog:",
@@ -31,58 +33,6 @@
 	},
 	"devDependencies": {
 		"ast-transform": "workspace:*",
-		"remark-parse": "11.0.0",
-		"rollup-config": "workspace:*"
-	},
-	"wireit": {
-		"build": {
-			"command": "rollup -c",
-			"output": [
-				"./dist/**/*"
-			],
-			"files": [
-				"./src/**/*",
-				"./tsconfig.json",
-				"./rollup.config.js"
-			],
-			"dependencies": [
-				"../ast:build",
-				"../ast-transform:build"
-			]
-		},
-		"format": {
-			"command": "prettier --write ."
-		},
-		"lint": {
-			"dependencies": [
-				"lint:eslint",
-				"lint:prettier",
-				"lint:tsc"
-			]
-		},
-		"lint:eslint": {
-			"command": "eslint .",
-			"dependencies": [
-				"../ast:build",
-				"../ast-transform:build"
-			]
-		},
-		"lint:prettier": {
-			"command": "prettier --check ."
-		},
-		"lint:tsc": {
-			"command": "tsc -p . --noEmit",
-			"dependencies": [
-				"../ast:build",
-				"../ast-transform:build"
-			]
-		},
-		"test": {
-			"command": "vitest run",
-			"dependencies": [
-				"../ast:build",
-				"../ast-transform:build"
-			]
-		}
+		"remark-parse": "11.0.0"
 	}
 }

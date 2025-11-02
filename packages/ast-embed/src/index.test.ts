@@ -1,15 +1,22 @@
 import { dedent } from '@qnighy/dedent';
+import { astTransform } from 'ast-transform';
+import { remarkEmbed } from 'remark-embed';
 import remarkGfm from 'remark-gfm';
 import remarkParse from 'remark-parse';
 import { unified } from 'unified';
 import { describe, expect, it } from 'vitest';
-import type { List } from 'mdast';
-import { remarkEmbed } from '.';
+import { astEmbed } from '.';
 
-describe('remarkEmbed', () => {
-	it('should transform orphan `link` to `embed`', async () => {
-		const transformer = unified().use(remarkParse).use(remarkGfm).use(remarkEmbed).freeze();
+describe('astEmbed', () => {
+	const transformer = unified()
+		.use(remarkParse)
+		.use(remarkGfm)
+		.use(remarkEmbed)
+		.use(astTransform)
+		.use(astEmbed)
+		.freeze();
 
+	it('should transform orphan `link` to `embed` (from AST)', async () => {
 		const markdown = dedent`\
 			https://example.com
 
@@ -26,16 +33,13 @@ describe('remarkEmbed', () => {
 
 		expect(result).toMatchSnapshot();
 	});
-	it('should not transform `link` to `embed` if parent is not `root`', async () => {
-		const transformer = unified().use(remarkParse).use(remarkGfm).use(remarkEmbed).freeze();
-
+	it('should not transform `link` to `embed` if parent is not `root` (from AST)', async () => {
 		const markdown = dedent`\
 			- https://example.com
 		`;
 
-		// eslint-disable-next-line ts/no-non-null-assertion
-		const result = (await transformer.run(transformer.parse(markdown).children.at(0)!)) as List;
+		const result = await transformer.run(transformer.parse(markdown));
 
-		expect(result.children.at(0)?.type).not.toBe('embed');
+		expect(result).toMatchSnapshot();
 	});
 });

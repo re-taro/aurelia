@@ -6,7 +6,6 @@ onlyBuiltDependencies:
   - workerd
 packages:
   - packages/*
-  - apps/*
 catalog:
   '@types/mdast': 4.0.4
   '@types/unist': 3.0.3

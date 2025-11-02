@@ -3,11 +3,11 @@ import { astTransform } from 'ast-transform';
 import remarkParse from 'remark-parse';
 import { unified } from 'unified';
 import { describe, expect, it } from 'vitest';
-import { astSection } from '.';
+import { astToc } from '.';
 
-describe('astSection', () => {
-	it('when nested heading is found (from AST)', async () => {
-		const transformer = unified().use(remarkParse).use(astTransform).use(astSection).freeze();
+describe('astToc', () => {
+	it('collect heading (from AST)', async () => {
+		const transformer = unified().use(remarkParse).use(astTransform).use(astToc).freeze();
 		const markdown = dedent`\
       # Heading 1
 
