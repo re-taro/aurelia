@@ -12,8 +12,9 @@ export default re_taro(
 		ignores: [
 			'apps/blog/worker-configuration.d.ts',
 			'apps/contents/worker-configuration.d.ts',
-			'packages/rollup/index.d.ts',
 			'apps/contents/**/*.md',
+			'**/.next/**',
+			'**/dist/**',
 		],
 	},
 );

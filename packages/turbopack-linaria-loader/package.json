@@ -1,0 +1,43 @@
+{
+	"name": "turbopack-linaria-loader",
+	"version": "0.1.0",
+	"type": "module",
+	"private": true,
+	"exports": {
+		".": {
+			"default": {
+				"types": "./dist/index.d.mts",
+				"default": "./dist/index.mjs"
+			}
+		}
+	},
+	"files": [
+		"dist",
+		"src"
+	],
+	"scripts": {
+		"build": "tsdown src/index.ts --dts --minify",
+		"format": "prettier --write .",
+		"format:check": "prettier --check .",
+		"lint:script": "eslint .",
+		"test:e2e": "TEST_ENV=production playwright test && TEST_ENV=development playwright test",
+		"typecheck": "tsc -p . --noEmit"
+	},
+	"dependencies": {
+		"@wyw-in-js/transform": "0.8.0"
+	},
+	"devDependencies": {
+		"@linaria/core": "6.3.0",
+		"@linaria/react": "6.3.0",
+		"@playwright/test": "1.57.0",
+		"@types/react": "19.2.7",
+		"@types/react-dom": "19.2.3",
+		"@wyw-in-js/babel-preset": "0.8.0",
+		"babel-plugin-react-compiler": "1.0.0",
+		"next": "16.0.7",
+		"playwright": "1.57.0",
+		"react": "19.2.1",
+		"react-dom": "19.2.1",
+		"webpack": "5.103.0"
+	}
+}

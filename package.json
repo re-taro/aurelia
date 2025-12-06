@@ -25,7 +25,8 @@
 		"lint:textlint": "wireit",
 		"typecheck": "turbo run typecheck",
 		"scaffold": "pnpm -C apps/contents run scaffold",
-		"test:unit": "turbo run test:unit"
+		"test:unit": "turbo run test:unit",
+		"test:e2e": "turbo run test:e2e"
 	},
 	"devDependencies": {
 		"@changesets/changelog-github": "0.5.1",
