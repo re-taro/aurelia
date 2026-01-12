@@ -2,7 +2,8 @@ dist
 node_modules
 tsconfig.tsbuildinfo
 storybook-static
-playwright-report
+playwright-report/
+playwright-report-dev/
 test-results
 .wrangler
 styled-system

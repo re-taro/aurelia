@@ -1,5 +1,8 @@
 packages:
   - packages/*
+  - packages/framework/e2e/fixture
+  - packages/framework/e2e/fixture-multi-entry
+  - packages/framework/e2e/fixture-ssr-defer
 
 catalog:
   '@types/mdast': 4.0.4

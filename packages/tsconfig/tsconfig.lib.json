@@ -5,11 +5,11 @@
 		"declaration": true,
 		"declarationMap": true,
 		"isolatedDeclarations": true,
-		"lib": ["ESNext"],
-		"module": "ESNext",
+		"lib": ["ES2024"],
+		"module": "preserve",
 		"moduleResolution": "bundler",
 		"sourceMap": true,
-		"target": "ES2022"
+		"target": "ES2024"
 	},
 	"extends": "./tsconfig.base.json"
 }

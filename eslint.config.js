@@ -16,4 +16,10 @@ export default re_taro(
 			'apps/contents/**/*.md',
 		],
 	},
+	{
+		files: ['packages/framework/**/*.tsx'],
+		rules: {
+			'ts/promise-function-async': 'off',
+		}
+	}
 );
