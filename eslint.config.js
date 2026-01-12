@@ -7,6 +7,11 @@ export default re_taro(
 				'css/use-baseline': 'off',
 			},
 		},
+		typescript: {
+			rules: {
+				'ts/restrict-template-expressions': 'off',
+			}
+		}
 	},
 	{
 		ignores: [

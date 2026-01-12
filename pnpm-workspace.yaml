@@ -5,6 +5,7 @@ onlyBuiltDependencies:
   - sharp
   - workerd
 packages:
+  - app
   - packages/*
 catalog:
   '@types/mdast': 4.0.4
