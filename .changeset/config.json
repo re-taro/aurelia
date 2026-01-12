@@ -2,7 +2,7 @@
 	"$schema": "https://unpkg.com/@changesets/config@3.0.0/schema.json",
 	"access": "public",
 	"baseBranch": "main",
-	"changelog": ["@changesets/changelog-github", { "repo": "re-taro/blog.re-taro.dev" }],
+	"changelog": ["@changesets/changelog-github", { "repo": "re-taro/aurelia" }],
 	"commit": false,
 	"fixed": [],
 	"ignore": [],
