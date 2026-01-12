@@ -1,11 +1,6 @@
-saveExact: true
-onlyBuiltDependencies:
-  - '@swc/core'
-  - esbuild
-  - sharp
-  - workerd
 packages:
   - packages/*
+
 catalog:
   '@types/mdast': 4.0.4
   '@types/unist': 3.0.3
@@ -14,3 +9,15 @@ catalog:
   temporal-polyfill: 0.3.0
   unfurl.js: 6.4.0
   unified: 11.0.5
+
+minimumReleaseAge: 1440
+
+onlyBuiltDependencies:
+  - '@swc/core'
+  - esbuild
+  - sharp
+  - workerd
+
+saveExact: true
+
+trustPolicy: no-downgrade
