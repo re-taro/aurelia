@@ -1,4 +1,4 @@
-import { defer } from "framework/entries/rsc";
+import { defer } from "@aurelia/framework/entries/rsc";
 import DeferredContent from "./DeferredContent";
 
 export default function App() {

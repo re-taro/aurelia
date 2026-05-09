@@ -63,6 +63,8 @@ importers:
         specifier: 4.45.3
         version: 4.45.3(@cloudflare/workers-types@4.20251014.0)
 
+  app: {}
+
   packages/ast:
     dependencies:
       '@types/unist':
@@ -284,6 +286,9 @@ importers:
 
   packages/framework/e2e/fixture:
     devDependencies:
+      '@aurelia/framework':
+        specifier: workspace:*
+        version: link:../..
       '@types/react':
         specifier: 19.2.14
         version: 19.2.14
@@ -293,9 +298,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: 6.0.1
         version: 6.0.1(vite@8.0.10(@types/node@24.9.2)(esbuild@0.27.2)(jiti@2.6.1)(terser@5.39.0)(yaml@2.5.0))
-      framework:
-        specifier: workspace:*
-        version: link:../..
       react:
         specifier: 19.2.3
         version: 19.2.3
@@ -308,6 +310,9 @@ importers:
 
   packages/framework/e2e/fixture-multi-entry:
     devDependencies:
+      '@aurelia/framework':
+        specifier: workspace:*
+        version: link:../..
       '@types/react':
         specifier: 19.2.14
         version: 19.2.14
@@ -317,9 +322,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: 6.0.1
         version: 6.0.1(vite@8.0.10(@types/node@24.9.2)(esbuild@0.27.2)(jiti@2.6.1)(terser@5.39.0)(yaml@2.5.0))
-      framework:
-        specifier: workspace:*
-        version: link:../..
       react:
         specifier: 19.2.3
         version: 19.2.3
@@ -332,6 +334,9 @@ importers:
 
   packages/framework/e2e/fixture-ssr-defer:
     devDependencies:
+      '@aurelia/framework':
+        specifier: workspace:*
+        version: link:../..
       '@types/react':
         specifier: 19.2.14
         version: 19.2.14
@@ -341,9 +346,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: 6.0.1
         version: 6.0.1(vite@8.0.10(@types/node@24.9.2)(esbuild@0.27.2)(jiti@2.6.1)(terser@5.39.0)(yaml@2.5.0))
-      framework:
-        specifier: workspace:*
-        version: link:../..
       react:
         specifier: 19.2.3
         version: 19.2.3

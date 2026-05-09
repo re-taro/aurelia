@@ -1,4 +1,4 @@
-import type { EntryDefinition } from 'framework/entries';
+import type { EntryDefinition } from '@aurelia/framework/entries';
 
 export default function getEntries(): EntryDefinition[] {
   return [

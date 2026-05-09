@@ -1,4 +1,5 @@
 packages:
+  - app
   - packages/*
   - packages/framework/e2e/fixture
   - packages/framework/e2e/fixture-multi-entry

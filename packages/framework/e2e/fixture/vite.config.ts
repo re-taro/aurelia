@@ -1,4 +1,4 @@
-import aurelia from "framework";
+import aurelia from "@aurelia/framework";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 
