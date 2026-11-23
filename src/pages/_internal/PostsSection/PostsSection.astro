@@ -1,0 +1,18 @@
+---
+import type { PostsByYear } from '../../../context/post/definitions';
+import { PostsByYearSection } from '../PostsByYearSection';
+
+import * as styles from './styles.css';
+
+type Props = {
+	postsGroups: PostsByYear[];
+};
+
+const { postsGroups } = Astro.props;
+---
+
+<section class={styles.section}>
+	{postsGroups.map(({ year, posts }) => (
+		<PostsByYearSection year={year} posts={posts} />
+	))}
+</section>

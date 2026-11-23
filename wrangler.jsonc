@@ -1,0 +1,17 @@
+{
+	"$schema": "./node_modules/wrangler/config-schema.json",
+	"compatibility_date": "2026-08-29",
+	"compatibility_flags": ["global_fetch_strictly_public"],
+	"name": "aurelia",
+	"main": "@astrojs/cloudflare/entrypoints/server",
+	"assets": {
+		"directory": "./dist",
+		"binding": "ASSETS",
+	},
+	"images": {
+		"binding": "IMAGES",
+	},
+	"observability": {
+		"enabled": true,
+	},
+}

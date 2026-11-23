@@ -1,27 +1,16 @@
-packages:
-  - app
-  - packages/*
-  - packages/framework/e2e/fixture
-  - packages/framework/e2e/fixture-multi-entry
-  - packages/framework/e2e/fixture-ssr-defer
-
-catalog:
-  '@types/mdast': 4.0.4
-  '@types/unist': 3.0.3
-  mdast-util-from-markdown: 2.0.2
-  shiki: 3.2.2
-  temporal-polyfill: 0.3.0
-  unfurl.js: 6.4.0
-  unified: 11.0.5
-
-minimumReleaseAge: 1440
-
-onlyBuiltDependencies:
-  - '@swc/core'
-  - esbuild
-  - sharp
-  - workerd
-
+allowBuilds:
+  esbuild@0.28.1: true
+  esbuild@0.28.2: true
+  sharp@0.33.5: true
+  workerd@1.20260828.1: true
+autoInstallPeers: false
+blockExoticSubdeps: true
+enablePrePostScripts: false
+minimumReleaseAge: 1440 # 1 * 24 * 60
+optimisticRepeatInstall: true
 saveExact: true
-
+strictDepBuilds: true
+strictPeerDependencies: true
 trustPolicy: no-downgrade
+trustPolicyIgnoreAfter: 10080 # 7 * 24 * 60
+verifyDepsBeforeRun: error

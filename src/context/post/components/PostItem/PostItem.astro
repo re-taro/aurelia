@@ -1,0 +1,18 @@
+---
+import { formatDate, parseZonedDateTime } from '../../../../foundation/utils/DateUtils';
+
+import * as styles from './styles.css';
+
+type Props = {
+	id: string;
+	publishedAt: string;
+	title: string;
+};
+
+const { id, publishedAt, title } = Astro.props;
+---
+
+<a href={`/p/${id}`} class={styles.a}>
+	<time datetime={publishedAt}>{formatDate(parseZonedDateTime(publishedAt), 'MM-DD')}</time>
+	<span>{title}</span>
+</a>

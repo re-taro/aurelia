@@ -1,0 +1,24 @@
+{
+	"$schema": "./node_modules/oxfmt/configuration_schema.json",
+	"printWidth": 120,
+	"tabWidth": 2,
+	"useTabs": true,
+	"semi": true,
+	"singleQuote": true,
+	"quoteProps": "as-needed",
+	"jsxSingleQuote": false,
+	"trailingComma": "all",
+	"bracketSpacing": true,
+	"bracketSameLine": true,
+	"arrowParens": "always",
+	"endOfLine": "lf",
+	"sortPackageJson": true,
+	"astro": true,
+	"associations": [{ "files": ["tsconfig.json"], "language": "jsonc" }],
+	"sortImports": {
+		"groups": ["side_effect", "builtin", "external", "internal", "parent", "sibling", "index"],
+		"ignoreCase": true,
+		"newlinesBetween": true
+	},
+	"ignorePatterns": ["pnpm-lock.yaml"]
+}

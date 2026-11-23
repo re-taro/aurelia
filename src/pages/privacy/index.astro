@@ -1,0 +1,22 @@
+---
+import { Link } from '../../foundation/components/fragments/Link';
+import { PageTitle } from '../../foundation/components/fragments/PageTitle';
+import { CommonLayout } from '../../foundation/layouts/CommonLayout';
+
+import * as styles from './_styles.css';
+---
+
+<CommonLayout title="Privacy Policy">
+	<PageTitle>Privacy Policy</PageTitle>
+	<section class={styles.section}>
+		<ul class={styles.ul}>
+			<li>
+				本サイトは
+				<Link href="https://policies.google.com/technologies/partner-sites" target="_blank">
+					Google Analytics
+				</Link>
+				を導入している。
+			</li>
+		</ul>
+	</section>
+</CommonLayout>

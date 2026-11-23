@@ -1,0 +1,57 @@
+---
+import * as cc from 'astro:content';
+
+import { GITHUB_PERMALINK_COMPONENT_NAME } from '../../../context/post/definitions';
+import { PageTitle } from '../../../foundation/components/fragments/PageTitle';
+import { CommonLayout } from '../../../foundation/layouts/CommonLayout';
+import { postClient } from '../../../infra/PostClient';
+
+import { DescriptionList } from './_internal/DescriptionList';
+import { GitHubPermalink } from './_internal/GitHubPermalink';
+import { Img } from './_internal/Img';
+import { Toc, TocLink } from './_internal/Toc';
+import * as styles from './_styles.css';
+
+export const getStaticPaths = async (): Promise<{ params: { slug: string } }[]> => {
+	const { posts } = await postClient.fetchAll(cc, {
+		draft: import.meta.env.DEV,
+	});
+
+	return posts.map((post) => ({
+		params: { slug: post.id },
+	}));
+};
+
+const { slug } = Astro.params;
+if (slug === '') {
+	return Astro.rewrite('/404');
+}
+
+const { post } = await postClient.fetch(cc, {
+	id: slug,
+});
+if (post == null) {
+	return Astro.rewrite('/404');
+}
+
+const { Content, headings } = await cc.render(post);
+---
+
+<CommonLayout
+	background="reading"
+	title={post.data.title}
+	description={post.data.description}
+	ogImage={`p/${post.id}/og-image.png`}
+	ogImageType="large"
+	article={{ publishedAt: post.data.publishedAt, updatedAt: post.data.updatedAt ?? null }}>
+	<article class={styles.article}>
+		<PageTitle>{post.data.title}</PageTitle>
+		<DescriptionList tags={post.data.tags} publishedAt={post.data.publishedAt} updatedAt={post.data.updatedAt ?? null}>
+			{headings.length > 0 && <TocLink />}
+		</DescriptionList>
+		<div class={styles.markdown}>
+			<Content components={{ img: Img, [GITHUB_PERMALINK_COMPONENT_NAME]: GitHubPermalink }} />
+		</div>
+	</article>
+	{headings.length > 0 && <Toc slot="drawer" headings={headings} />}
+</CommonLayout>

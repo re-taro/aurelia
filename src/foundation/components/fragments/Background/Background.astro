@@ -1,0 +1,192 @@
+---
+import * as styles from './styles.css';
+---
+
+<aurelia-background class={styles.root} transition:persist="background">
+	<canvas class={styles.canvas} aria-hidden="true"></canvas>
+</aurelia-background>
+
+<script>
+	import { BACKGROUND_MODE_ATTRIBUTE, type BackgroundMode } from './mode';
+	import type { Renderer } from './renderer';
+
+	const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+	const moreContrast = matchMedia('(prefers-contrast: more)');
+
+	// ClientRouter は遷移のたびに <html> の属性を新しいページのものへ差し替える
+	const currentMode = (): BackgroundMode =>
+		document.documentElement.getAttribute(BACKGROUND_MODE_ATTRIBUTE) === 'reading' ? 'reading' : 'ambient';
+
+	class AureliaBackground extends HTMLElement {
+		#renderer: Renderer | null = null;
+		#abortController: AbortController | null = null;
+
+		connectedCallback(): void {
+			// transition:persist で要素が新しい DOM へ移動された場合は再初期化しない
+			if (this.#abortController) {
+				return;
+			}
+
+			const canvas = this.querySelector('canvas');
+			if (canvas == null) {
+				return;
+			}
+
+			this.#abortController = new AbortController();
+			const { signal } = this.#abortController;
+
+			const start = async (): Promise<void> => {
+				// WebGL のコードは初期描画と競合しないよう遅延して読み込む
+				const { createRenderer } = await import('./renderer');
+				if (signal.aborted) {
+					return;
+				}
+
+				const renderer = await createRenderer(canvas, {
+					fps: 30,
+					reading: {
+						fps: 20,
+						laneBrightness: 0.2,
+						brightness: 0.6,
+						timeScale: 0.6,
+						feather: 80,
+						easeTime: 0.4,
+					},
+					areaPerJelly: 260_000,
+					minRadius: 36,
+					maxRadius: 92,
+					intensity: 0.85,
+					pointSize: 2.2,
+					areaPerDust: 5000,
+					renderScale: 1,
+					maxDpr: 2,
+				});
+				// WebGL2 が使えない場合は html の background にフォールバックする
+				if (renderer == null) {
+					return;
+				}
+				// シェーダのコンパイルを待つ間に要素が外れていたら破棄する
+				if (signal.aborted) {
+					renderer.dispose();
+					return;
+				}
+				this.#renderer = renderer;
+
+				const sync = (): void => {
+					renderer.setStatic(reducedMotion.matches);
+					// コントラストを上げる設定では CSS で隠すので、描画も止める
+					renderer.setVisible(document.visibilityState === 'visible' && !moreContrast.matches);
+				};
+				sync();
+				reducedMotion.addEventListener('change', sync, { signal });
+				moreContrast.addEventListener('change', sync, { signal });
+				document.addEventListener('visibilitychange', sync, { signal });
+
+				// 本文の帯は main 要素の左右。レイアウトを読むので、遷移とリサイズのときだけ測る
+				const measureLane = (): void => {
+					const main = document.querySelector('main');
+					if (main == null) {
+						renderer.setFocusLane(0, window.innerWidth);
+						return;
+					}
+					const rect = main.getBoundingClientRect();
+					renderer.setFocusLane(rect.left, rect.right);
+				};
+				const applyMode = (immediate: boolean): void => {
+					const mode = currentMode();
+					if (mode === 'reading') {
+						measureLane();
+					}
+					renderer.setMode(mode, immediate);
+				};
+				// 記事を直接開いたときは、最初から沈んだ状態で始める
+				applyMode(true);
+				document.addEventListener('astro:after-swap', () => applyMode(false), { signal });
+				// 目次の開閉で本文が横に滑るので、滑っている間は毎フレーム帯を追従させる
+				const FOLLOW_LIMIT_MS = 1000;
+				let followFrame = 0;
+				const stopFollowing = (): void => {
+					cancelAnimationFrame(followFrame);
+					followFrame = 0;
+					measureLane();
+				};
+				const followLane = (startedAt: number): void => {
+					followFrame = requestAnimationFrame((now) => {
+						measureLane();
+						if (now - startedAt < FOLLOW_LIMIT_MS) {
+							followLane(startedAt);
+						} else {
+							stopFollowing();
+						}
+					});
+				};
+				document.addEventListener(
+					'toggle',
+					() => {
+						if (currentMode() !== 'reading') {
+							return;
+						}
+						cancelAnimationFrame(followFrame);
+						followLane(performance.now());
+					},
+					{ capture: true, signal },
+				);
+				document.addEventListener(
+					'transitionend',
+					(event) => {
+						if (event.propertyName === 'translate' && followFrame !== 0) {
+							stopFollowing();
+						}
+					},
+					{ signal },
+				);
+
+				let resizeFrame = 0;
+				window.addEventListener(
+					'resize',
+					() => {
+						if (currentMode() !== 'reading' || resizeFrame !== 0) {
+							return;
+						}
+						resizeFrame = requestAnimationFrame(() => {
+							resizeFrame = 0;
+							measureLane();
+						});
+					},
+					{ signal, passive: true },
+				);
+			};
+
+			if ('requestIdleCallback' in globalThis) {
+				requestIdleCallback(
+					() => {
+						void start();
+					},
+					{ timeout: 2000 },
+				);
+			} else {
+				setTimeout(() => {
+					void start();
+				}, 200);
+			}
+		}
+
+		disconnectedCallback(): void {
+			// ClientRouter は persist した要素を replaceWith で移動するため、
+			// disconnected → connected が同期的に連続して発火する。本当に外れた時だけ破棄する
+			queueMicrotask(() => {
+				if (this.isConnected) {
+					return;
+				}
+				this.#abortController?.abort();
+				this.#abortController = null;
+				this.#renderer?.dispose();
+				this.#renderer = null;
+			});
+		}
+	}
+
+	if (customElements.get('aurelia-background') == null) {
+		customElements.define('aurelia-background', AureliaBackground);
+	}
+</script>

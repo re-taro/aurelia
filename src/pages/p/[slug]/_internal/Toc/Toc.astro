@@ -1,0 +1,52 @@
+---
+import type { MarkdownHeading } from 'astro';
+
+import { DRAWER_ATTRIBUTE } from '../../../../../foundation/styles/drawer.css';
+
+import { TOC_ID } from './definitions';
+import * as styles from './styles.css';
+
+type Props = {
+	headings: MarkdownHeading[];
+};
+
+const { headings } = Astro.props;
+
+const items = headings.filter(({ depth }) => depth >= 2 && depth <= 4);
+const minDepth = Math.min(...items.map(({ depth }) => depth));
+const level = (depth: number): keyof typeof styles.li => (depth - minDepth) as keyof typeof styles.li;
+---
+
+<nav id={TOC_ID} class={styles.nav} popover="auto" aria-label="目次" {...{ [DRAWER_ATTRIBUTE]: '' }}>
+	<ol class={styles.ol}>
+		{items.map(({ depth, slug, text }) => (
+			<li class={styles.li[level(depth)]}>
+				<a class={styles.a} href={`#${slug}`}>
+					<span class={styles.hash}>{'#'.repeat(depth)}</span>
+					{text}
+				</a>
+			</li>
+		))}
+	</ol>
+</nav>
+
+<style is:global>
+	@starting-style {
+		[data-aurelia-drawer]:popover-open {
+			translate: 100% 0;
+			opacity: 0;
+		}
+	}
+</style>
+
+<script>
+	document.addEventListener('click', (event) => {
+		if (!(event.target instanceof Element)) {
+			return;
+		}
+		const popover = event.target.closest('[data-aurelia-drawer] a[href^="#"]')?.closest('[popover]');
+		if (popover instanceof HTMLElement) {
+			popover.hidePopover();
+		}
+	});
+</script>

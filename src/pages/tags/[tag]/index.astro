@@ -1,0 +1,51 @@
+---
+import * as cc from 'astro:content';
+
+import { PostItem } from '../../../context/post/components/PostItem';
+import { normalizeTag } from '../../../context/tag/services';
+import { PageTitle } from '../../../foundation/components/fragments/PageTitle';
+import { CommonLayout } from '../../../foundation/layouts/CommonLayout';
+import { postClient } from '../../../infra/PostClient';
+import { tagClient } from '../../../infra/TagClient';
+
+import * as styles from './_styles.css';
+
+export const getStaticPaths = async (): Promise<{ params: { tag: string } }[]> => {
+	const { tags } = await tagClient.fetchAll(cc, {
+		draft: import.meta.env.DEV,
+	});
+
+	return tags.map((tag) => ({
+		params: { tag: normalizeTag(tag) },
+	}));
+};
+
+const { tag } = Astro.params;
+if (tag === '') {
+	return Astro.rewrite('/404');
+}
+
+const { posts } = await postClient.fetchAll(cc, {
+	tag,
+	draft: import.meta.env.DEV,
+});
+
+if (posts.length === 0) {
+	return Astro.rewrite('/404');
+}
+---
+
+<CommonLayout title={tag}>
+	<PageTitle>{tag}</PageTitle>
+	<section class={styles.section}>
+		<ul>
+			{posts.map(({ id, data: { publishedAt, title } }) => (
+				<li>
+					<h3>
+						<PostItem id={id} publishedAt={publishedAt} title={title} />
+					</h3>
+				</li>
+			))}
+		</ul>
+	</section>
+</CommonLayout>

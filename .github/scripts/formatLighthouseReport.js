@@ -8,11 +8,11 @@
  * @type {Record<keyof LighthouseSummary, string>}
  */
 const summaryKeys = {
-	'accessibility': 'Accessibility',
+	accessibility: 'Accessibility',
 	'best-practices': 'Best Practices',
-	'performance': 'Performance',
-	'pwa': 'PWA',
-	'seo': 'SEO',
+	performance: 'Performance',
+	pwa: 'PWA',
+	seo: 'SEO',
 };
 
 /**
@@ -21,10 +21,7 @@ const summaryKeys = {
 function scoreEntry(rawScore) {
 	const score = Math.round(rawScore * 100);
 
-	const scoreIcon =
-		score >= 90 ? '🟢'
-		: score >= 50 ? '🟠'
-		: '🔴';
+	const scoreIcon = score >= 90 ? '🟢' : score >= 50 ? '🟠' : '🔴';
 	return `${scoreIcon} ${score}`;
 }
 
@@ -69,12 +66,14 @@ function createMarkdownTableHeader() {
 function createLighthouseReport({ links, results }) {
 	const tableHeader = createMarkdownTableHeader();
 	const tableBody = results.map((result) => {
-		const testUrl = /**
-		 * @type {string}
-		 */ (Object.keys(links).find((key) => key === result.url));
-		const reportPublicUrl = /**
-		 * @type {string}
-		 */ (links[testUrl]);
+		const testUrl =
+			/**
+			 * @type {string}
+			 */ (Object.keys(links).find((key) => key === result.url));
+		const reportPublicUrl =
+			/**
+			 * @type {string}
+			 */ (links[testUrl]);
 
 		return createMarkdownTableRow({
 			reportUrl: reportPublicUrl,

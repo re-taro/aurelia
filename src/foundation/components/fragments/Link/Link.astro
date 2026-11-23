@@ -1,0 +1,13 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+import * as styles from './styles.css';
+
+type Props = HTMLAttributes<'a'>;
+
+const { href, target, rel, ...rest } = Astro.props;
+---
+
+<a {...rest} class={styles.a} rel={target === '_blank' ? 'noreferrer' : rel} href={href} target={target}>
+	<slot />
+</a>

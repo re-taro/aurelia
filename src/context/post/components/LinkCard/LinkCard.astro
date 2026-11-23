@@ -1,0 +1,15 @@
+---
+import { z } from 'astro/zod';
+
+import { ReactiveLinkCard } from './_internal/ReactiveLinkCard';
+
+type Props = z.input<typeof props>;
+
+const props = z.object({
+	href: z.string(),
+});
+
+const { href } = props.parse(Astro.props);
+---
+
+<ReactiveLinkCard href={href} client:visible />

@@ -1,0 +1,14 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+import { Color } from '../../styles/tokens/color';
+
+type Props = HTMLAttributes<'svg'>;
+
+const { color = Color.MONO_A, height = 24, viewBox = '0 0 24 24', width = 24, ...rest } = Astro.props;
+---
+
+<svg width={width} height={height} viewBox="0 0 24 24" {...rest}>
+	<title>ポートフォリオ</title>
+	<path fill={color} d="M4 21V9l8-6l8 6v12h-6v-7h-4v7z"></path>
+</svg>

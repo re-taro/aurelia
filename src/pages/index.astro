@@ -1,0 +1,21 @@
+---
+import * as cc from 'astro:content';
+
+import { groupPostsByYear } from '../context/post/services';
+import { PageTitle } from '../foundation/components/fragments/PageTitle';
+import { CommonLayout } from '../foundation/layouts/CommonLayout';
+import { postClient } from '../infra/PostClient';
+
+import { PostsSection } from './_internal/PostsSection';
+
+const { posts } = await postClient.fetchAll(cc, {
+	draft: import.meta.env.DEV,
+});
+
+const postsGroups = groupPostsByYear(posts);
+---
+
+<CommonLayout>
+	<PageTitle>Index</PageTitle>
+	<PostsSection postsGroups={postsGroups} />
+</CommonLayout>
