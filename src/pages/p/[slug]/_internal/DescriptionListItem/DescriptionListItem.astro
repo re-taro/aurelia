@@ -1,0 +1,12 @@
+---
+import * as styles from './styles.css';
+---
+
+<div class={styles.div}>
+	<dt class={styles.dt}>
+		<slot name="dt" />
+	</dt>
+	<dd>
+		<slot name="dd" />
+	</dd>
+</div>

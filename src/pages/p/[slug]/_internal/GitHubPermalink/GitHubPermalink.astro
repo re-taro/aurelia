@@ -1,0 +1,26 @@
+---
+import * as styles from './styles.css';
+
+type Props = {
+	url: string;
+	owner: string;
+	repo: string;
+	ref: string;
+	path: string;
+	startLine: string;
+	endLine: string;
+	totalLines: string;
+};
+
+const { url, owner, repo, ref, startLine, endLine } = Astro.props;
+
+const shortRef = /^[0-9a-f]{40}$/u.test(ref) ? ref.slice(0, 7) : ref;
+const lineLabel = startLine === endLine ? `L${startLine}` : `L${startLine}-L${endLine}`;
+---
+
+<figure class={styles.figure}>
+	<slot />
+	<figcaption class={styles.caption}>
+		<a href={url} target="_blank" rel="noreferrer">{`${owner}/${repo}@${shortRef} ${lineLabel}`}</a>
+	</figcaption>
+</figure>

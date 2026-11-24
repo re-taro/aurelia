@@ -1,0 +1,31 @@
+---
+import * as cc from 'astro:content';
+
+import { PostItem } from '../../context/post/components/PostItem';
+import { PageTitle } from '../../foundation/components/fragments/PageTitle';
+import { CommonLayout } from '../../foundation/layouts/CommonLayout';
+import { postClient } from '../../infra/PostClient';
+
+import * as styles from './_styles.css';
+
+const { posts } = await postClient.fetchAll(cc, {
+	draft: import.meta.env.DEV,
+});
+const latestPosts = posts.slice(0, 5);
+---
+
+<CommonLayout title="404 Not Found">
+	<PageTitle>404 Not Found</PageTitle>
+	<section class={styles.section}>
+		<h2 class={styles.h2}>latest posts</h2>
+		<ul>
+			{latestPosts.map(({ id, data: { publishedAt, title } }) => (
+				<li>
+					<h3>
+						<PostItem id={id} publishedAt={publishedAt} title={title} />
+					</h3>
+				</li>
+			))}
+		</ul>
+	</section>
+</CommonLayout>

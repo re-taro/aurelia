@@ -1,0 +1,28 @@
+name: Setup
+description: Install the toolchain with mise, install dependencies with pnpm, and generate types
+
+runs:
+  using: composite
+  steps:
+    - name: Setup | mise
+      uses: jdx/mise-action@v5.3.0
+    - name: Setup | Resolve pnpm store path
+      id: pnpm-store
+      shell: bash
+      run: echo "path=$(pnpm store path --silent)" >> "$GITHUB_OUTPUT"
+    - name: Setup | Cache pnpm store
+      uses: actions/cache@v6.1.0
+      with:
+        path: ${{ steps.pnpm-store.outputs.path }}
+        key: ${{ runner.os }}-pnpm-store-${{ hashFiles('pnpm-lock.yaml') }}
+        restore-keys: |
+          ${{ runner.os }}-pnpm-store-
+    - name: Setup | Install dependencies
+      shell: bash
+      run: pnpm install --frozen-lockfile
+    # worker-configuration.d.ts と .astro/ は gitignore されている。型を使う lint / typecheck の前に生成する
+    - name: Setup | Generate types
+      shell: bash
+      run: |
+        pnpm run generate-types
+        pnpm exec astro sync

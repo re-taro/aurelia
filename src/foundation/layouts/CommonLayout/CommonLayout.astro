@@ -1,0 +1,108 @@
+---
+import '../../styles/reset.css';
+import '../../styles/theme.css';
+import '../../styles/global-styles.css';
+
+import { GOOGLE_ANALYTICS_ID } from 'astro:env/client';
+import { ClientRouter } from 'astro:transitions';
+import { joinURL, normalizeURL } from 'ufo';
+
+import { Background, type BackgroundMode } from '../../components/fragments/Background';
+import { SITE_DESCRIPTION, SITE_NAME, TWITTER_USERNAME } from '../../definitions';
+import { parseZonedDateTime } from '../../utils/DateUtils';
+
+import { Footer } from './_internal/Footer';
+import { Header } from './_internal/Header';
+import * as styles from './styles.css';
+
+type Props = {
+	title?: string;
+	description?: string | null;
+	ogImage?: string;
+	ogImageType?: 'large' | 'small';
+	/**
+	 * 記事ページでは article を渡す。og:type と article:* の meta に反映される
+	 */
+	article?: {
+		publishedAt: string;
+		updatedAt: string | null;
+	};
+	/**
+	 * 背景のクラゲの見え方。記事のように読ませるページでは reading にする。
+	 * <html data-background> として出し、Background が遷移のたびに読む
+	 */
+	background?: BackgroundMode;
+};
+
+const { title, description, ogImage, ogImageType, article, background = 'ambient' } = Astro.props;
+
+const url = normalizeURL(Astro.site?.toString() ?? '');
+
+const titleText = title ? `${title} - ${SITE_NAME}` : SITE_NAME;
+const descriptionText = description === undefined ? SITE_DESCRIPTION : description;
+const ogImageUrl = ogImage ? joinURL(url, ogImage) : joinURL(url, 'og-image.png');
+const twitterCard = ogImageType === 'large' ? 'summary_large_image' : 'summary';
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+const toIsoString = (value: string): string => parseZonedDateTime(value).toInstant().toString();
+
+const gtmScript = `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","${GOOGLE_ANALYTICS_ID}")`;
+---
+
+<html lang="ja" data-background={background}>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<title>{titleText}</title>
+		{descriptionText !== null && <meta name="description" content={descriptionText} />}
+		<link rel="icon" href="/favicon-256.png" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		<link rel="manifest" href="/manifest.webmanifest" />
+		<link rel="sitemap" href="/sitemap-index.xml" />
+		<link rel="alternate" type="application/rss+xml" href={new URL('/rss.xml', Astro.site)} />
+		<link rel="canonical" href={canonicalUrl} />
+		<meta property="og:site_name" content={SITE_NAME} />
+		<meta property="og:title" content={titleText} />
+		{descriptionText !== null && <meta property="og:description" content={descriptionText} />}
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:image" content={ogImageUrl} />
+		<meta property="og:image:alt" content={titleText} />
+		<meta property="og:type" content={article == null ? 'website' : 'article'} />
+		{article != null && (
+			<>
+				<meta property="article:published_time" content={toIsoString(article.publishedAt)} />
+				{article.updatedAt != null && (
+					<meta property="article:modified_time" content={toIsoString(article.updatedAt)} />
+				)}
+			</>
+		)}
+		<meta name="twitter:card" content={twitterCard} />
+		<meta name="twitter:site" content={`@${TWITTER_USERNAME}`} />
+		<meta name="twitter:creator" content={`@${TWITTER_USERNAME}`} />
+		<meta name="twitter:title" content={titleText} />
+		{descriptionText !== null && <meta name="twitter:description" content={descriptionText} />}
+		<meta name="twitter:image" content={ogImageUrl} />
+		{GOOGLE_ANALYTICS_ID && (
+			<>
+				<script
+					type="text/partytown"
+					is:inline
+					src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
+				/>
+				<script type="text/partytown" is:inline set:html={gtmScript} />
+			</>
+		)}
+		<ClientRouter />
+	</head>
+	<body class={styles.body}>
+		<Background />
+		<div class={styles.page}>
+			<Header />
+			<main class={styles.main}>
+				<slot />
+			</main>
+			<Footer />
+		</div>
+		<slot name="drawer" />
+	</body>
+</html>

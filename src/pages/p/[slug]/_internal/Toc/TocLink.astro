@@ -1,0 +1,14 @@
+---
+import { DescriptionListItem } from '../DescriptionListItem';
+
+import { TOC_ID } from './definitions';
+import * as styles from './styles.css';
+---
+
+<DescriptionListItem>
+	<span slot="dt">toc</span>
+	<button slot="dd" type="button" class={styles.button} popovertarget={TOC_ID}>
+		<span class={styles.label.open}>open</span>
+		<span class={styles.label.close}>close</span>
+	</button>
+</DescriptionListItem>

@@ -1,0 +1,27 @@
+---
+import { FeedIcon, HomeIcon } from '../../../../components/icons';
+
+import * as styles from './styles.css';
+---
+
+<header class={styles.header}>
+	<nav class={styles.nav}>
+		<ul class={styles.list}>
+			<li class={styles.listItem}>
+				<a href="/" class={styles.logo}>
+					blog.re-taro.dev
+				</a>
+			</li>
+			<li class={styles.listItem}>
+				<a href="/rss.xml" aria-label="RSS">
+					<FeedIcon aria-hidden width={28} height={28} />
+				</a>
+			</li>
+			<li class={styles.listItem}>
+				<a href="https://re-taro.dev" rel="noreferrer" target="_blank" aria-label="ポートフォリオ">
+					<HomeIcon aria-hidden width={28} height={28} />
+				</a>
+			</li>
+		</ul>
+	</nav>
+</header>

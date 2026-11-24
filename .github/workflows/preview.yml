@@ -1,0 +1,68 @@
+name: Preview
+
+on:
+  pull_request:
+
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  preview:
+    # フォークからの PR ではシークレットを使えないのでスキップする
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Setup | Checkout
+        uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - name: Setup | Toolchain
+        uses: $/.github/actions/setup
+      - name: Run | Build
+        run: pnpm run build
+      # 本番トラフィックには載せず、PR ごとに固定のエイリアス URL を持つバージョンとしてアップロードする
+      - name: Deploy | Upload preview version
+        id: upload
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          WRANGLER_OUTPUT_FILE_PATH: ${{ runner.temp }}/wrangler-output.ndjson
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          pnpm exec wrangler versions upload \
+            --preview-alias "pr-${PR_NUMBER}" \
+            --message "PR #${PR_NUMBER} (${HEAD_SHA})"
+          url="$(jq -r 'select(.type == "version-upload") | .preview_alias_url // empty' "$WRANGLER_OUTPUT_FILE_PATH")"
+          if [ -z "$url" ]; then
+            echo "::error::Preview URL is not available. Check that preview_urls is enabled for the Worker."
+            exit 1
+          fi
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+      - name: Post | Comment preview URL
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PREVIEW_URL: ${{ steps.upload.outputs.url }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          body="$(cat <<EOF
+          ### Deploy Preview ready
+
+          | Name | Link |
+          | --- | --- |
+          | Latest commit | ${HEAD_SHA} |
+          | Deploy log | ${RUN_URL} |
+          | Preview URL | ${PREVIEW_URL} |
+          EOF
+          )"
+          gh pr comment "$PR_NUMBER" --edit-last --create-if-none --body "$body"

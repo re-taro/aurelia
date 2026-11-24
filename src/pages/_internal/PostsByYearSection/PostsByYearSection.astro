@@ -1,0 +1,29 @@
+---
+import { PostItem } from '../../../context/post/components/PostItem';
+import type { Post } from '../../../context/post/definitions';
+
+import * as styles from './styles.css';
+
+type Props = {
+	year: number;
+	posts: Post[];
+};
+
+const { year, posts } = Astro.props;
+---
+
+<section class={styles.section}>
+	<h2 class={styles.h2} id={`${year}`}>
+		<a class={styles.hash} href={`#${year}`} aria-label={`${year}`}></a>
+		{year}
+	</h2>
+	<ul>
+		{posts.map(({ id, data: { publishedAt, title } }) => (
+			<li>
+				<h3>
+					<PostItem id={id} publishedAt={publishedAt} title={title} />
+				</h3>
+			</li>
+		))}
+	</ul>
+</section>

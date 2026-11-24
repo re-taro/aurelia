@@ -1,4 +1,4 @@
-# [blog.re-taro.dev](https://blog.re-taro.dev)
+# [aurelia](https://blog.re-taro.dev)
 
 my personal blog.
 

@@ -1,0 +1,29 @@
+---
+import * as cc from 'astro:content';
+
+import { normalizeTag } from '../../context/tag/services';
+import { PageTitle } from '../../foundation/components/fragments/PageTitle';
+import { CommonLayout } from '../../foundation/layouts/CommonLayout';
+import { tagClient } from '../../infra/TagClient';
+
+import * as styles from './_styles.css';
+
+const { tags } = await tagClient.fetchAll(cc, {
+	draft: import.meta.env.DEV,
+});
+---
+
+<CommonLayout title="Tags">
+	<PageTitle>Tags</PageTitle>
+	<section class={styles.section}>
+		<ul class={styles.ul}>
+			{tags.map((tag) => (
+				<li class={styles.li}>
+					<a class={styles.a} href={`/tags/${normalizeTag(tag)}`}>
+						{tag}
+					</a>
+				</li>
+			))}
+		</ul>
+	</section>
+</CommonLayout>

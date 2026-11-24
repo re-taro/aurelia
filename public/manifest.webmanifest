@@ -1,0 +1,13 @@
+{
+	"name": "blog.re-taro.dev",
+	"short_name": "blog.re-taro.dev",
+	"description": "@re-taro のブログ。 web エコシステムの観測を放流している。",
+	"start_url": "/",
+	"display": "browser",
+	"background_color": "#07090a",
+	"theme_color": "#07090a",
+	"icons": [
+		{ "src": "/favicon-256.png", "sizes": "256x256", "type": "image/png" },
+		{ "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+	]
+}

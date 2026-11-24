@@ -1,0 +1,47 @@
+---
+import { normalizeTag } from '../../../../../context/tag/services';
+import { formatDate, parseZonedDateTime } from '../../../../../foundation/utils/DateUtils';
+import { DescriptionListItem } from '../DescriptionListItem';
+
+import * as styles from './styles.css';
+
+type Props = {
+	tags: string[];
+	publishedAt: string;
+	updatedAt: string | null;
+};
+
+const { tags, publishedAt, updatedAt } = Astro.props;
+---
+
+<dl class={styles.dl}>
+	<DescriptionListItem>
+		<span slot="dt">published at</span>
+		<time slot="dd" datetime={publishedAt}>
+			{formatDate(parseZonedDateTime(publishedAt), 'YYYY-MM-DD')}
+		</time>
+	</DescriptionListItem>
+	{updatedAt != null && (
+		<DescriptionListItem>
+			<span slot="dt">updated at</span>
+			<time slot="dd" datetime={updatedAt}>
+				{formatDate(parseZonedDateTime(updatedAt), 'YYYY-MM-DD')}
+			</time>
+		</DescriptionListItem>
+	)}
+	<DescriptionListItem>
+		<span slot="dt">tags</span>
+		<nav slot="dd">
+			<ul class={styles.ul}>
+				{tags.map((tag) => (
+					<li class={styles.li}>
+						<a class={styles.a} href={`/tags/${normalizeTag(tag)}`}>
+							{tag}
+						</a>
+					</li>
+				))}
+			</ul>
+		</nav>
+	</DescriptionListItem>
+	<slot />
+</dl>
