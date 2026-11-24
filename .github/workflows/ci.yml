@@ -1,139 +1,78 @@
-name: Main CI
+name: CI
 
 on:
   pull_request:
+  push:
     branches:
       - main
 
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.sha }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
-  setup:
+  lint:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
+    permissions:
+      contents: read
     steps:
       - name: Setup | Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - name: Setup | Node.js
-        uses: re-taro/actions/setup-node@v3.7.6
+        uses: actions/checkout@v7.0.1
         with:
-          node-version-file: .tool-versions
-  build-test:
-    needs:
-      - setup
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - name: Setup | Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - name: Setup | Node.js
-        uses: re-taro/actions/setup-node@v3.7.6
-        with:
-          node-version-file: .tool-versions
-      - name: Setup | wireit
-        uses: google/wireit@f21db1f3a6a4db31f42787a958cf2a18308effed # setup-github-actions-caching/v2.0.3
-      - name: Run | Build
-        run: pnpm run build
-  lint-test:
-    needs:
-      - setup
-      - build-test
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - name: Setup | Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - name: Setup | Node.js
-        uses: re-taro/actions/setup-node@v3.7.6
-        with:
-          node-version-file: .tool-versions
-      - name: Setup | wireit
-        uses: google/wireit@f21db1f3a6a4db31f42787a958cf2a18308effed # setup-github-actions-caching/v2.0.3
-      - name: Run | ESLint
-        run: pnpm run lint:eslint
-  type-test:
-    needs:
-      - setup
-      - build-test
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - name: Setup | Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - name: Setup | Node.js
-        uses: re-taro/actions/setup-node@v3.7.6
-        with:
-          node-version-file: .tool-versions
-      - name: Setup | wireit
-        uses: google/wireit@f21db1f3a6a4db31f42787a958cf2a18308effed # setup-github-actions-caching/v2.0.3
-      - name: Run | tsc
-        run: pnpm run lint:tsc
-  prettier-test:
-    needs:
-      - setup
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - name: Setup | Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - name: Setup | Node.js
-        uses: re-taro/actions/setup-node@v3.7.6
-        with:
-          node-version-file: .tool-versions
-      - name: Setup | wireit
-        uses: google/wireit@f21db1f3a6a4db31f42787a958cf2a18308effed # setup-github-actions-caching/v2.0.3
-      - name: Run | Prettier
-        run: pnpm run lint:prettier
-  slug-test:
-    needs:
-      - setup
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - name: Setup | Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - name: Setup | Node.js
-        uses: re-taro/actions/setup-node@v3.7.6
-        with:
-          node-version-file: .tool-versions
-      - name: Setup | wireit
-        uses: google/wireit@f21db1f3a6a4db31f42787a958cf2a18308effed # setup-github-actions-caching/v2.0.3
-      - name: Run | Slug
+          persist-credentials: false
+      - name: Setup | Toolchain
+        uses: $/.github/actions/setup
+      - name: Run | oxlint
+        run: pnpm run lint:script
+      - name: Run | textlint
         run: pnpm run lint:textlint
-  unit-test:
-    needs:
-      - setup
-      - build-test
+      - name: Run | oxfmt
+        run: pnpm run format:check
+
+  typecheck:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
+    permissions:
+      contents: read
     steps:
       - name: Setup | Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - name: Setup | Node.js
-        uses: re-taro/actions/setup-node@v3.7.6
+        uses: actions/checkout@v7.0.1
         with:
-          node-version-file: .tool-versions
-      - name: Setup | wireit
-        uses: google/wireit@f21db1f3a6a4db31f42787a958cf2a18308effed # setup-github-actions-caching/v2.0.3
-      - name: Test | Unit
-        run: pnpm run test:unit
-  integration-test:
-    needs:
-      - setup
-      - build-test
+          persist-credentials: false
+      - name: Setup | Toolchain
+        uses: $/.github/actions/setup
+      - name: Run | astro check
+        run: pnpm run typecheck
+
+  test:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 10
+    permissions:
+      contents: read
     steps:
       - name: Setup | Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - name: Setup | Node.js
-        uses: re-taro/actions/setup-node@v3.7.6
+        uses: actions/checkout@v7.0.1
         with:
-          node-version-file: .tool-versions
-      - name: Setup | Playwright
-        uses: ./.github/actions/setup-playwright
-      - name: Setup | wireit
-        uses: google/wireit@f21db1f3a6a4db31f42787a958cf2a18308effed # setup-github-actions-caching/v2.0.3
-      - name: Test | Integration
-        run: |
-          pnpm concurrently -k -s first -n "APP,TEST" -c "magenta,blue" \
-            "pnpm start" \
-            "pnpm wait-on http://127.0.0.1:8787 && pnpm test:integration"
+          persist-credentials: false
+      - name: Setup | Toolchain
+        uses: $/.github/actions/setup
+      - name: Run | vitest
+        run: pnpm run test
+
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - name: Setup | Checkout
+        uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - name: Setup | Toolchain
+        uses: $/.github/actions/setup
+      - name: Run | astro build
+        run: pnpm run build

@@ -4,11 +4,6 @@
 	"npm": {
 		"packageRules": [
 			{
-				"groupName": "playwright",
-				"matchPackageNames": ["/@playwright/*/", "/playwright/"],
-				"semanticCommitType": "fix"
-			},
-			{
 				"groupName": "shiki",
 				"matchPackageNames": ["/@shikijs/*/", "/shiki/"],
 				"semanticCommitType": "fix"
