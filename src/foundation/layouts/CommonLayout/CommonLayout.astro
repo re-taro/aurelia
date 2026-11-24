@@ -34,7 +34,7 @@ type Props = {
 	background?: BackgroundMode;
 };
 
-const { title, description, ogImage, ogImageType, article, background = 'ambient' } = Astro.props;
+const { title, description, ogImage, ogImageType = 'large', article, background = 'ambient' } = Astro.props;
 
 const url = normalizeURL(Astro.site?.toString() ?? '');
 
