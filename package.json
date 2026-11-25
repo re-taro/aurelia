@@ -72,7 +72,7 @@
 		"textlint-rule-preset-overflow-techblog": "0.0.2",
 		"typescript": "6.0.3",
 		"vite-plugin-glsl": "1.6.2",
-		"vitest": "4.1.10",
+		"vitest": "4.1.12",
 		"wrangler": "4.127.1"
 	},
 	"packageManager": "pnpm@11.0.8"
