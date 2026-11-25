@@ -14,8 +14,6 @@ globalStyle('html', {
 	interpolateSize: 'allow-keywords',
 	fontFamily: "Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif",
 	scrollBehavior: 'smooth',
-	// iOS のバウンスで固定配置の背景 canvas ごとページが動き、下の無地が覗いて背景が伸びたように見えるのを防ぐ
-	overscrollBehaviorY: 'none',
 	scrollPaddingTop: calc.multiply(vars.space, 2),
 	'@media': {
 		[MediaQuery.REDUCED_MOTION]: {
