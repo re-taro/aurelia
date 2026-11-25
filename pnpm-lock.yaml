@@ -145,8 +145,8 @@ importers:
         specifier: 6.0.3
         version: 6.0.3
       vite-plugin-glsl:
-        specifier: 1.6.2
-        version: 1.6.2(@rollup/pluginutils@5.4.0)(esbuild@0.28.2)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(yaml@2.9.0))
+        specifier: 1.6.4
+        version: 1.6.4(@rollup/pluginutils@5.4.0)(esbuild@0.28.2)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(yaml@2.9.0))
       vitest:
         specifier: 4.1.12
         version: 4.1.12(@types/node@26.4.0)(esbuild@0.28.2)(yaml@2.9.0)
@@ -5105,8 +5105,8 @@ packages:
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
 
-  vite-plugin-glsl@1.6.2:
-    resolution: {integrity: sha512-/WSsBiKg6HcBXutxtynJ9CBJImv4m6Fa3bAGLCQXeSgboiH1VVjL3ok42MeGIpc4NzOKFa1F0s+09J03M+jepw==}
+  vite-plugin-glsl@1.6.4:
+    resolution: {integrity: sha512-eJ5oGAu4d826sZdnv4wnnQUZHlshs3JfiuCvmfuWyLgjwAiKpC35V0h3fqFSfcPEcMaIG05/SZYL0NRJB2Ywew==}
     engines: {node: '>= 20.17.0', npm: '>= 10.8.3'}
     peerDependencies:
       '@rollup/pluginutils': ^5.x
@@ -11321,7 +11321,7 @@ snapshots:
       - tsx
       - yaml
 
-  vite-plugin-glsl@1.6.2(@rollup/pluginutils@5.4.0)(esbuild@0.28.2)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(yaml@2.9.0)):
+  vite-plugin-glsl@1.6.4(@rollup/pluginutils@5.4.0)(esbuild@0.28.2)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(yaml@2.9.0)):
     dependencies:
       vite: 8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(yaml@2.9.0)
     optionalDependencies:
