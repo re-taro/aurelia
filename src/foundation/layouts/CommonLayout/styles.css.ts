@@ -33,5 +33,4 @@ export const main = style({
 	maxWidth: vars.layout.maxW,
 	margin: `${calc.multiply(vars.space, 1)} auto`,
 	isolation: 'isolate',
-	minHeight: '100%',
 });
