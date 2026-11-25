@@ -33,7 +33,7 @@
 		"entities": "8.0.0",
 		"preact": "10.29.8",
 		"satori": "0.63.2",
-		"sharp": "0.35.4",
+		"sharp": "0.35.5",
 		"shiki": "4.4.3",
 		"temporal-polyfill-lite": "0.4.2",
 		"tslog": "5.1.0",
