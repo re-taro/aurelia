@@ -24,7 +24,7 @@
 		"typecheck": "astro check"
 	},
 	"dependencies": {
-		"@preact/signals": "2.11.2",
+		"@preact/signals": "2.11.4",
 		"@vanilla-extract/css": "1.21.2",
 		"@vanilla-extract/css-utils": "0.1.6",
 		"astro": "7.2.8",
