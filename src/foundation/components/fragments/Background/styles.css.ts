@@ -4,11 +4,7 @@ import { MediaQuery } from '../../../styles/tokens/breakpoint';
 
 export const root = style({
 	position: 'fixed',
-	top: 0,
-	right: 0,
-	left: 0,
-	// モバイルでツールバーが出入りしても canvas がリサイズされて伸びないよう、最大のビューポート高に固定する
-	height: '100lvh',
+	inset: 0,
 	zIndex: -1,
 	display: 'block',
 	pointerEvents: 'none',
