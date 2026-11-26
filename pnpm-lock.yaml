@@ -136,8 +136,8 @@ importers:
         specifier: 1.1.0
         version: 1.1.0(typescript@6.0.3)
       textlint-rule-ja-space-around-link:
-        specifier: 3.0.4
-        version: 3.0.4
+        specifier: 3.1.0
+        version: 3.1.0
       textlint-rule-preset-overflow-techblog:
         specifier: 0.0.2
         version: 0.0.2(textlint@15.8.0)
@@ -4747,8 +4747,8 @@ packages:
   textlint-rule-ja-space-around-link@2.4.2:
     resolution: {integrity: sha512-++o4wwCnDiubgE60QuOv0xW/0EcF2ta4EfjOycYsLYqvJ6DzFEZFGv3S/TujzmrIdRc8sHAO62489flvPu1DsQ==}
 
-  textlint-rule-ja-space-around-link@3.0.4:
-    resolution: {integrity: sha512-NsEgUPEEPbHZY5cn6JC3CUmjveJ0NvDcRvc5tIRW3e+nFzcM8w35PqUWiDKDEiPd67hp4u9nmdtYozPMC6PAFw==}
+  textlint-rule-ja-space-around-link@3.1.0:
+    resolution: {integrity: sha512-193PZ7kuWJxBGEPfowMRzs6ItDyz3d5vn+hChN1GsnkdUYfBSP1rAUQLM8lMqtaw1e0453QkagShyW/Bg26FLg==}
 
   textlint-rule-ja-space-between-half-and-full-width@2.4.2:
     resolution: {integrity: sha512-GqwSy0ivm4Q5Bok9LaOwfg+H1auLRMoMi2aY/7aSIrgvX/RD5aZ2Rk2lm3TTX42mR1UrQu8GDqktUEZfvQ913w==}
@@ -10856,7 +10856,7 @@ snapshots:
       match-index: 1.0.3
       textlint-rule-helper: 2.5.0
 
-  textlint-rule-ja-space-around-link@3.0.4:
+  textlint-rule-ja-space-around-link@3.1.0:
     dependencies:
       textlint-rule-helper: 2.5.0
 
