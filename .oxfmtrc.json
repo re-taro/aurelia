@@ -20,5 +20,5 @@
 		"ignoreCase": true,
 		"newlinesBetween": true
 	},
-	"ignorePatterns": ["pnpm-lock.yaml"]
+	"ignorePatterns": ["pnpm-lock.yaml", "e2e/contents/**"]
 }

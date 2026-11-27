@@ -1,0 +1,15 @@
+name: aurelia-e2e
+
+services:
+  playwright:
+    build:
+      context: ..
+      dockerfile: e2e/Dockerfile
+    environment:
+      - CI
+    init: true
+    ipc: host
+    # spec・ベースライン・レポートは手元のファイルをそのまま読み書きする。
+    # e2e/ の外 (アプリのコードや依存) を変えたときだけイメージを作り直す
+    volumes:
+      - .:/workspace/e2e

@@ -1,0 +1,63 @@
+---
+title: コードの表示確認
+description: コードブロックの言語ごとの色付け、タイトル、行の強調、GitHub のパーマリンクを並べた記事
+tags: ['Code', 'Test Fixture']
+publishedAt: 2025-03-01T09:00:00.000+09:00[Asia/Tokyo]
+---
+
+## 言語ごとの色付け
+
+```ts
+type Post = {
+	id: string;
+	title: string;
+	tags: readonly string[];
+};
+
+export const findPost = (posts: readonly Post[], id: string): Post | undefined =>
+	posts.find((post) => post.id === id);
+```
+
+```json
+{
+	"name": "aurelia",
+	"private": true
+}
+```
+
+```sh
+pnpm install --frozen-lockfile
+pnpm run build
+```
+
+```
+言語を指定しないコードブロック
+```
+
+## タイトルと行の強調
+
+```ts title="src/greet.ts" {2} ins={3} del={4}
+export const greet = (name: string): string => {
+	const message = `Hello, ${name}`;
+	console.log(message);
+	console.info(message);
+	return message;
+};
+```
+
+```diff lang="ts"
+-const answer = 41;
++const answer = 42;
+```
+
+## 長い行
+
+長い行は、コードブロックの中で横にスクロールする。
+
+```ts
+export const aVeryLongFunctionNameThatShouldNotBreakTheLayout = (argumentNumberOne: string, argumentNumberTwo: string): string => argumentNumberOne + argumentNumberTwo;
+```
+
+## GitHub のパーマリンク
+
+https://github.com/re-taro/blog.re-taro.dev/blob/3c06bf9491b56475ed91418e0d593505f407f492/src/foundation/styles/tokens/breakpoint.ts#L3-L7

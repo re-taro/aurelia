@@ -179,6 +179,18 @@
 			}
 		},
 		{
+			"files": ["e2e/**"],
+			"rules": {
+				"import/no-nodejs-modules": "off",
+				"node/no-process-env": "off",
+				"node/no-sync": "off",
+				"react-hooks/rules-of-hooks": "off",
+				"vitest/consistent-test-filename": "off",
+				"vitest/no-conditional-in-test": "off",
+				"vitest/prefer-importing-vitest-globals": "off"
+			}
+		},
+		{
 			"files": ["src/pages/api/**"],
 			"rules": {
 				"typescript/no-unsafe-argument": "off",

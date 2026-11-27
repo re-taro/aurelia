@@ -3,9 +3,11 @@ import { z } from 'astro/zod';
 import { defineCollection } from 'astro:content';
 import { Temporal } from 'temporal-polyfill-lite';
 
+const CONTENTS_DIRECTORY = process.env['AURELIA_CONTENTS_DIR'] ?? './contents';
+
 const posts = defineCollection({
 	loader: glob({
-		base: './contents',
+		base: CONTENTS_DIRECTORY,
 		pattern: '**/*.mdx',
 		generateId: ({ entry }) => {
 			// entry == {{ ulid }}/slug.md

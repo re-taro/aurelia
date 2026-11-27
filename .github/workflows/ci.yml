@@ -76,3 +76,53 @@ jobs:
         uses: $/.github/actions/setup
       - name: Run | astro build
         run: pnpm run build
+
+  # 見た目 (VRT) と振る舞いを Playwright で確かめる。手元と同じ Docker のイメージで動かし、コミットしたベースラインと比べる
+  e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - name: Setup | Checkout
+        uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - name: Setup | Build image
+        run: docker compose -f e2e/compose.yml build
+      - name: Run | Playwright
+        run: docker compose -f e2e/compose.yml run --rm playwright
+      - name: Post | Upload report
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: playwright-report
+          path: |
+            e2e/playwright-report/
+            e2e/test-results/
+          retention-days: 14
+          if-no-files-found: ignore
+
+  # ブランチ保護の required check にはこれだけを指定する。Renovate の automerge はこれが通るまで待つ
+  ci-status:
+    if: ${{ always() }}
+    needs:
+      - lint
+      - typecheck
+      - test
+      - build
+      - e2e
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions: {}
+    steps:
+      - name: Check | All jobs succeeded
+        env:
+          RESULTS: ${{ join(needs.*.result, ' ') }}
+        run: |
+          for result in $RESULTS; do
+            if [ "$result" != 'success' ]; then
+              echo "::error::Some jobs did not succeed: ${RESULTS}"
+              exit 1
+            fi
+          done
