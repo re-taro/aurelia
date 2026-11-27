@@ -41,7 +41,7 @@
 		"sharp": "0.35.5",
 		"shiki": "4.6.0",
 		"temporal-polyfill-lite": "0.4.2",
-		"tslog": "5.1.0",
+		"tslog": "5.5.0",
 		"ufo": "1.6.4",
 		"unist-util-visit": "5.1.0"
 	},

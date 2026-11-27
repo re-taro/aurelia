@@ -45,8 +45,8 @@ importers:
         specifier: 0.4.2
         version: 0.4.2
       tslog:
-        specifier: 5.1.0
-        version: 5.1.0
+        specifier: 5.5.0
+        version: 5.5.0
       ufo:
         specifier: 1.6.4
         version: 1.6.4
@@ -4700,9 +4700,9 @@ packages:
   tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
 
-  tslog@5.1.0:
-    resolution: {integrity: sha512-g77ALovust2HNBX/63ePEJwetIeX0Vi/dlzqBO+ZAg+aERB54KMmaz/khNPxhFpaxKQ6RQj65sK6vIhj1SJgjQ==}
-    engines: {node: '>=20'}
+  tslog@5.5.0:
+    resolution: {integrity: sha512-GgdyKPwUtVMKDSHFtZJg3taWUHyL8pV262AfVlak00gE4qwpCpTEZT1tQ/ZS/FQsiTWqjvAD/viTt1vDmNhQ4A==}
+    engines: {node: '>=22'}
     hasBin: true
 
   type-check@0.4.0:
@@ -10773,7 +10773,7 @@ snapshots:
 
   tslib@2.8.1: {}
 
-  tslog@5.1.0: {}
+  tslog@5.5.0: {}
 
   type-check@0.4.0:
     dependencies:
