@@ -1,11 +1,13 @@
 .astro/
 dist/
+dist-e2e/
 node_modules/
 tsconfig.tsbuildinfo/
 storybook-static/
 playwright-report/
 playwright-report-dev/
 test-results
+e2e/__screenshots__/local/
 .wrangler/
 worker-configuration.d.ts
 .pnpm-store/

@@ -1,0 +1,36 @@
+---
+title: 画像とリンクカードの表示確認
+description: 記事に置いた画像と、リンク先の OGP を取得して表示するリンクカードを並べた記事
+tags: ['Media', 'Test Fixture']
+publishedAt: 2025-02-01T09:00:00.000+09:00[Asia/Tokyo]
+---
+
+import { LinkCard } from '../../../src/context/post/components/LinkCard';
+
+## 画像
+
+横長の画像。
+
+![横長の画像](./landscape.png)
+
+縦長の画像。
+
+![縦長の画像](./portrait.jpg 'タイトルつきの画像')
+
+## リンクカード
+
+大きな画像のカード (`twitter:card` が `summary_large_image`)。
+
+<LinkCard href="https://example.com/large" />
+
+小さな画像のカード。
+
+<LinkCard href="https://example.com/small" />
+
+画像のないカード。
+
+<LinkCard href="https://example.com/plain" />
+
+OGP を取得できなかったカード。
+
+<LinkCard href="https://example.com/missing" />

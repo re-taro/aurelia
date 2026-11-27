@@ -1,6 +1,20 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
 	"extends": ["local>re-taro/renovate-config"],
+	"packageRules": [
+		{
+			"description": "e2e の Docker イメージ (e2e/Dockerfile) の Node は .tool-versions と同じ版にそろえる",
+			"groupName": "Node.js",
+			"matchDepNames": ["node"],
+			"matchManagers": ["asdf", "dockerfile"]
+		},
+		{
+			"description": "e2e の Docker イメージの digest の更新は e2e 自体が確かめるので、通れば automerge する",
+			"matchFileNames": ["e2e/Dockerfile"],
+			"matchUpdateTypes": ["digest"],
+			"automerge": true
+		}
+	],
 	"npm": {
 		"packageRules": [
 			{

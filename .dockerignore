@@ -1,0 +1,14 @@
+**/node_modules
+.git
+.github
+.claude
+.astro
+.wrangler
+.pnpm-store
+dist
+dist-e2e
+worker-configuration.d.ts
+e2e/__screenshots__
+e2e/test-results
+e2e/playwright-report
+contents

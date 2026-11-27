@@ -1,0 +1,8 @@
+/*
+ * スクリーンショットを撮るときだけ差し込むスタイル。
+ * 背景のクラゲ (WebGL) は時間と乱数で絶えず動くので、隠して html の背景色だけにする。
+ * 背景が動くことは scenarios/background.spec.ts で確かめる
+ */
+aurelia-background {
+	visibility: hidden !important;
+}
