@@ -1,0 +1,377 @@
+---
+title: V8 における null プロトタイプのオブジェクトリテラルの生成
+description: '`{__proto__: null, a: 1}` が dictionary mode で作られる仕組みと、fast mode で作れるようにしたパッチの実装について'
+tags: ['V8', 'JavaScript', 'performance']
+publishedAt: 2026-11-17T01:13:00.000+09:00[Asia/Tokyo]
+updatedAt: 2026-11-29T05:00:23.000+09:00[Asia/Tokyo]
+---
+
+import { LinkCard } from '../../src/context/post/components/LinkCard';
+
+## はじめに
+
+V8 で `{__proto__: null, a: 1, b: 2}` のような null プロトタイプのオブジェクトリテラルが、どのように生成されるのかを解説する。
+筆者が最近 V8 に入れたパッチで、こうしたリテラルを dictionary mode ではなく fast mode で生成できるようにしたので、その実装についても書く。
+
+<LinkCard href="https://chromium-review.googlesource.com/c/v8/v8/+/8476491" />
+
+V8 のオブジェクト表現 (hidden class やインラインキャッシュ) については、既にたくさんの解説記事があるのでそちらを参照してほしい。[^1]
+この記事では、オブジェクトリテラルが bytecode からランタイムに降りてきたあと、何を根拠に Map が選ばれるのかに焦点を当てる。
+
+[^1]: https://mathiasbynens.be/notes/shapes-ics
+
+## null プロトタイプのオブジェクトリテラル
+
+`__proto__: null` を書いたオブジェクトリテラルは、`Object.prototype` を継承しないオブジェクトを作る。
+
+```js
+const o = { __proto__: null, a: 1, b: 2 };
+Object.getPrototypeOf(o); // null
+'toString' in o; // false
+```
+
+歴史的には `Object.create(null)` と同じく、キーの衝突を気にしなくてよい辞書として使われてきた。
+一方で最近は、`toString` や `constructor` を持たない「ただのレコード」として書くケースも増えてきた。
+ライブラリの内部で設定オブジェクトを `{__proto__: null, ...}` で作る、といった用途だ。
+
+V8 は長らく、この 2 つの用途を区別せず、`__proto__: null` が付いたリテラルをすべて dictionary mode で生成していた。
+結果として `{__proto__: null, a: 1, b: 2, c: 3}` の生成は `{a: 1, b: 2, c: 3}` の約 4 倍遅く、その後のプロパティアクセスはずっとインラインキャッシュに乗らなかった。
+
+## V8 がオブジェクトリテラルを生成する流れ
+
+まず、通常のオブジェクトリテラルがどう生成されるのかを追う。
+
+### パーサー
+
+パーサーは `ObjectLiteral` ノードを作るとき、各プロパティの種類を分類する。
+`__proto__: expr` は `PROTOTYPE` という種類になり、その値が `null` リテラルであれば `has_null_prototype` フラグが立つ。[^2]
+
+[^2]: https://source.chromium.org/chromium/chromium/src/+/main:v8/src/ast/ast.cc
+
+```cpp title="src/ast/ast.h"
+bool IsNullPrototype() const {
+  return IsPrototype() && value()->IsNullLiteral();
+}
+```
+
+これとは別に、パーサーは boilerplate description というデータ構造を作る。
+これは、リテラルが宣言している定数プロパティのキーと値を並べた配列で、後述する boilerplate の元になる。
+計算されたキー (`[key]: 1`) や関数値は boilerplate description には入らず、オブジェクト生成後に個別のストアとして bytecode が出る。
+
+### bytecode
+
+bytecode generator は `CreateObjectLiteral` という bytecode を出す。
+オペランドは boilerplate description、feedback slot、そしてフラグである。
+フラグには `kHasNullPrototype` や、要素が fast elements で表現できるかの `kFastElements` などが入る。
+
+`__proto__: null` 以外の `__proto__: expr` は、`CreateObjectLiteral` の後に `Runtime::kInternalSetPrototype` の呼び出しとして出る。
+つまり `__proto__: null` だけが特別扱いされ、生成そのものに織り込まれている。
+
+```cpp title="src/interpreter/bytecode-generator.cc"
+case ObjectLiteral::Property::PROTOTYPE: {
+  // __proto__:null is handled by CreateObjectLiteral.
+  if (property->IsNullPrototype()) break;
+  ...
+  builder()->CallRuntime(Runtime::kInternalSetPrototype, args);
+  break;
+}
+```
+
+### boilerplate と AllocationSite
+
+`CreateObjectLiteral` の bytecode handler は、feedback slot を見て分岐する。
+
+初回の実行では feedback slot が空なので、ランタイム関数の `CreateObjectLiteral` が呼ばれる。
+ランタイムは boilerplate description から boilerplate と呼ばれるテンプレートオブジェクトを 1 つ作り、`AllocationSite` に包んで feedback slot に保存する。
+boilerplate は実際に返されるオブジェクトではなく、以後のコピー元になる。
+
+2 回目以降は、feedback slot に保存された boilerplate をコピーするだけで済む。
+`CreateShallowObjectLiteral` という builtin が、boilerplate の Map をそのまま使い、in-object プロパティをコピーして新しいオブジェクトを作る。
+boilerplate が dictionary mode の場合は、プロパティの dictionary をまるごとコピーする。
+
+つまり、boilerplate がどの Map で作られたかが、そのリテラルから生成されるすべてのオブジェクトの Map を決める。
+
+### JSDataObjectBuilder
+
+boilerplate を実際に組み立てるのは `JSDataObjectBuilder` である。
+これは `JSON.parse` と共通のクラスで、プロパティのイテレータを受け取り、ルート Map からプロパティ遷移を 1 つずつ辿りながら最終的な Map を決め、オブジェクトを確保して値を書き込む。
+
+ルート Map は `ObjectLiteralMapFromCache` から取られる。
+これは native context が持つキャッシュで、プロパティ数ごとに in-object プロパティ領域の大きさが違う Map を保持している。
+
+```cpp title="src/heap/factory.cc"
+Handle<Map> Factory::ObjectLiteralMapFromCache(
+    DirectHandle<NativeContext> context, int number_of_properties) {
+  // Use initial slow object proto map for too many properties.
+  if (number_of_properties >= JSObject::kMapCacheSize) {
+    return handle(context->slow_object_with_object_prototype_map(), isolate());
+  }
+  ...
+  Handle<Map> map = Map::Create(isolate(), number_of_properties);
+  cache->set(number_of_properties, MakeWeak(*map));
+  return map;
+}
+```
+
+キャッシュのサイズは 128 で、それ以上のプロパティを持つリテラルは dictionary mode の Map が返る。
+これは null プロトタイプとは無関係に、巨大なリテラルは最初から dictionary mode で作るという判断である。
+
+ルート Map の prototype は `Object.prototype` なので、ここからプロパティ遷移を積んだ Map も当然 `Object.prototype` を指す。
+
+## null プロトタイプが dictionary mode になる仕組み
+
+ランタイムの `CreateObjectLiteral` は、冒頭でフラグを見て分岐していた。
+
+```cpp title="src/runtime/runtime-literals.cc (変更前)"
+if (has_null_prototype) {
+  return CreateObjectLiteralWithNullProto(
+      isolate, object_boilerplate_description, flags, allocation);
+}
+```
+
+`CreateObjectLiteralWithNullProto` は `JSDataObjectBuilder` を使わない。
+native context が持つ `slow_object_with_null_prototype_map` という dictionary mode の Map でオブジェクトを確保し、プロパティを 1 つずつ dictionary に追加していく。
+この Map は `Object.create(null)` が使うものと同じである。
+
+この分岐は 2017 年に入ったものだ。[^3]
+コミットメッセージには、`Object.create(null)` と `{__proto__: null}` の挙動の差を減らす、と書かれている。
+null プロトタイプのオブジェクトは辞書として使われるのだから、`Object.create(null)` と同じく最初から dictionary mode にしてしまおう、という判断である。
+
+[^3]: https://chromium.googlesource.com/v8/v8/+/3f73fecb132457ba66b1cfbd04a025b33ffef3b7
+
+この判断には、それなりの根拠がある。
+辞書として使われるオブジェクトには、オブジェクトごとに違うキーが追加される。
+fast mode のままだと、キーの追加ごとに Map の遷移が作られる。
+20000 個のオブジェクトにそれぞれ一意なキーを 20 個追加すれば、Map は数十万個になる。
+これを map explosion と呼び、メモリを圧迫するだけでなく、遷移の探索や GC のコストも増える。
+V8 には `fast_properties_soft_limit` という閾値があり、out-of-object プロパティが一定数を超えると dictionary mode に落とす仕組みはあるが、それまでの間に作られた Map は残る。
+
+一方で、同じ null プロトタイプのオブジェクトでも、他の作り方をすると fast mode になる。
+
+```js
+// どちらも fast mode になる
+Object.setPrototypeOf({ a: 1, b: 2 }, null);
+({ __proto__: null, ...source });
+```
+
+`Object.setPrototypeOf` は `JSObject::SetPrototype` を通り、Map の prototype 遷移で fast mode を維持する。
+spread は `CloneObjectIC` を通り、ソースオブジェクトの Map を元に null プロトタイプの Map を作る。
+リテラルの書き方だけで扱いが変わるのは、一貫性がない。
+
+## 実装の方針
+
+方針は、プロパティを宣言している null プロトタイプリテラルを「レコード」として扱い、fast mode で生成するというものだ。
+空の `{__proto__: null}` は `Object.create(null)` と同じく辞書として使われる可能性が高いので、従来通り dictionary mode のままにする。
+計算されたキーしか持たない `{__proto__: null, [key]: 1}` も、boilerplate description が空になるので同じ扱いである。
+
+ランタイムの分岐はこうなった。
+
+```cpp title="src/runtime/runtime-literals.cc"
+if (has_null_prototype &&
+    (length == 0 || number_of_properties >= JSObject::kMapCacheSize ||
+     !v8_flags.fast_null_proto_literals)) {
+  return CreateObjectLiteralWithNullProto(
+      isolate, object_boilerplate_description, flags, allocation);
+}
+```
+
+`number_of_properties >= JSObject::kMapCacheSize` の条件は後述する。
+
+### 最初の実装: 後から SetPrototype する
+
+最初に書いた実装は素朴なもので、通常のリテラルと同じ経路で boilerplate を作ったあと、`JSObject::SetPrototype` で null プロトタイプに付け替えるというものだった。
+
+`JSObject::SetPrototype` は `MapUpdater::ApplyPrototypeTransition` を呼ぶ。
+`MapUpdater` は、現在の Map からルート Map まで遡り、ルート Map に prototype 遷移をかけてから、元の Map が持っていたプロパティ遷移を新しいルートの下で再生する。
+結果として得られる Map は、`Object.setPrototypeOf({a: 1, b: 2}, null)` が作るものと同じになる。
+boilerplate は 1 度しか作られないので、この処理が重くても大した問題ではないと考えていた。
+
+レビューでは、この方針そのものに指摘が入った。
+
+> Instead of building the object on the `Object.prototype` root map first and then calling `JSObject::SetPrototype` afterwards, we should transition the root map to the `null` prototype first in `JSDataObjectBuilder::InitializeMapFromZero`.
+> This will be faster and better for a number of reasons. Updating the map for SetPrototype is an expensive operation.
+
+`MapUpdater` による Map の更新は、ルート Map まで遡って遷移を再生するだけでは済まない。
+Map の deprecation やフィールドの generalization も絡む高コストな処理であり、避けられるなら避けるべき、という指摘だ。
+結果の Map は同じでも、そこに至る経路が無駄に重かった。
+
+### 最終的な実装: ルート Map を先に遷移させる
+
+最終的には、`JSDataObjectBuilder` に省略可能な prototype 引数を追加した。
+prototype が指定されたときは、キャッシュから取ったルート Map に対して、プロパティ遷移を積む前に prototype 遷移をかける。
+
+```cpp title="src/objects/js-data-object-builder.cc"
+void JSDataObjectBuilder::InitializeMapFromZero() {
+  map_ = isolate_->factory()->ObjectLiteralMapFromCache(
+      isolate_->native_context(), expected_property_count_);
+  if (!prototype_.is_null() && map_->prototype() != *prototype_) {
+    DCHECK(!map_->is_dictionary_map());
+    map_ = Map::TransitionRootMapToPrototypeForNewObject(isolate_, map_,
+                                                         prototype_);
+  }
+  if (elements_kind_ == DICTIONARY_ELEMENTS) {
+    map_ = Map::AsElementsKind(isolate_, map_, elements_kind_);
+  }
+}
+```
+
+`Map::TransitionRootMapToPrototypeForNewObject` は、ルート Map の prototype 遷移を扱う関数で、`Object.setPrototypeOf` や `Function.prototype.bind` の内部でも使われている。
+ルート Map の transition array に prototype 遷移がキャッシュされていればそれを返し、なければ Map をコピーして prototype を差し替え、キャッシュに登録する。
+
+```cpp title="src/objects/map.cc"
+Handle<Map> Map::TransitionToUpdatePrototype(
+    Isolate* isolate, DirectHandle<Map> map,
+    DirectHandle<JSPrototype> prototype) {
+  Handle<Map> new_map;
+  if (auto maybe_map = TransitionsAccessor::GetPrototypeTransition(
+          isolate, *map, *prototype)) {
+    new_map = handle(*maybe_map, isolate);
+  } else {
+    new_map = CopyForPrototypeTransition(isolate, map, prototype);
+    if (!map->IsDetached(isolate)) {
+      TransitionsAccessor::PutPrototypeTransition(isolate, map, prototype,
+                                                  new_map);
+    }
+  }
+  return new_map;
+}
+```
+
+これで boilerplate は最初から null プロトタイプのルート Map の上に組み立てられる。
+その後のプロパティ遷移は、null プロトタイプのルート Map の transition tree に積まれていく。
+`Object.setPrototypeOf({a: 1, b: 2}, null)` が辿る経路も、最終的には同じルート Map の下で同じプロパティ遷移を再生するので、Map は共有される。
+
+```js
+const literal = { __proto__: null, a: 1, b: 2 };
+const viaSet = Object.setPrototypeOf({ a: 1, b: 2 }, null);
+%HaveSameMap(literal, viaSet); // true
+```
+
+なお、elements kind の遷移 (`Map::AsElementsKind`) より前に prototype 遷移をかけている。
+elements kind の遷移はルート Map 同士の遷移ではなく、prototype 遷移はルート Map にしかかけられないためだ。
+
+### 128 プロパティ以上のリテラル
+
+前述の通り、`ObjectLiteralMapFromCache` は 128 プロパティ以上のリテラルに対して dictionary mode の Map を返す。
+この Map に `TransitionRootMapToPrototypeForNewObject` をかけると何が起こるか。
+
+`PutPrototypeTransition` は dictionary map に対しては遷移をキャッシュしない。
+
+```cpp title="src/objects/transitions.cc"
+// Don't cache prototype transition if this map is either shared, or a map of
+// a prototype.
+if (map->is_prototype_map()) return false;
+if (map->is_dictionary_map() || !v8_flags.cache_prototype_transitions) {
+  return false;
+}
+```
+
+dictionary mode のオブジェクトは Map を共有しないので、キャッシュする意味がないからだ。
+そのため、このまま通すとリテラルが評価されるたびに新しい dictionary map を確保してしまう。
+`slow_object_with_null_prototype_map` という専用の Map が既にあるのだから、それを使うべきである。
+これが、ランタイムの分岐に `number_of_properties >= JSObject::kMapCacheSize` を足した理由だ。
+builder 側には `DCHECK(!map_->is_dictionary_map())` を置いて、この経路に dictionary map が来ないことを保証している。
+
+### 最適化コンパイラ
+
+Maglev や TurboFan は、boilerplate の Map が dictionary mode の場合、リテラルの生成をインライン化せずランタイム呼び出しにフォールバックする。
+
+```cpp title="src/maglev/maglev-graph-builder.cc"
+// We currently only support in-object properties.
+if (boilerplate.map(broker()).elements_kind() == DICTIONARY_ELEMENTS ||
+    boilerplate.map(broker()).is_dictionary_map() ||
+    !boilerplate.raw_properties_or_hash(broker()).has_value()) {
+  return {};
+}
+```
+
+boilerplate が fast mode になったことで、null プロトタイプのリテラルもこの経路に乗る。
+最適化コードでは、Map と in-object プロパティの初期値が埋め込まれたアロケーションとして生成され、ランタイム呼び出しは消える。
+パッチ側で最適化コンパイラに手を入れる必要はなかった。
+
+## トレードオフの計測
+
+2017 年の判断の根拠だった map explosion は、このパッチで再び起こりうる。
+どの程度のものかを測った。
+
+`{__proto__: null, seed: 0}` というリテラルで 20000 個のオブジェクトを作り、それぞれに K 個のキーを動的に追加する。
+キーのパターンは「全オブジェクトで同じキーを同じ順で追加」「同じキーをランダムな順で追加」「オブジェクトごとに一意なキーを追加」の 3 つである。
+比較対象として、`{seed: 0}` という通常のリテラルを同じように扱った場合も載せている。
+Map 数は `--log-maps` で数えた Map 生成イベントの数、ヒープは GC 後の `performance.measureMemory()` の値である。
+
+| キーのパターン         | K   | before (dict) | after (fast) | 通常のリテラル | Map 数 before → after | ヒープ before → after |
+| ---------------------- | --- | ------------- | ------------ | -------------- | --------------------- | --------------------- |
+| 同じキー、同じ順       | 5   | 0.25 us/obj   | 0.13 us/obj  | 0.13 us/obj    | 901 → 909             | 4.8 → 1.2 MB          |
+| 同じキー、ランダムな順 | 5   | 0.25 us/obj   | 0.10 us/obj  | 0.10 us/obj    | 901 → 1036            | 5.6 → 2.0 MB          |
+| 一意なキー             | 5   | 0.88 us/obj   | 1.53 us/obj  | 1.67 us/obj    | 901 → 103k            | 7.5 → 6.6 MB          |
+| 同じキー、同じ順       | 20  | 0.50 us/obj   | 0.63 us/obj  | 0.66 us/obj    | 901 → 935             | 8.4 → 8.4 MB          |
+| 同じキー、ランダムな順 | 20  | 0.81 us/obj   | 2.40 us/obj  | 2.61 us/obj    | 901 → 154k            | 10.4 → 10.4 MB        |
+| 一意なキー             | 20  | 3.34 us/obj   | 6.75 us/obj  | 7.17 us/obj    | 901 → 331k            | 18.4 → 18.4 MB        |
+
+一意なキーやランダムな順でキーを追加するパターンでは、Map の数が 900 個から 10 万個以上に跳ね上がる。
+作成コストも 2 倍から 3 倍になる。
+一方で、キーの集合が安定しているパターンでは 2 倍速くなり、メモリも 2.5 倍から 4 倍少なくなる。
+そして、レコードとして使う (プロパティを後から追加しない) 場合は、生成が 19.2 ns から 5.2 ns になり、その後のアクセスに monomorphic なインラインキャッシュが効く。
+
+ここで重要なのは、after の列が通常のリテラルの列と誤差の範囲で一致していることだ。
+このパッチは `{__proto__: null, x: ...}` を `{x: ...}` と全く同じ挙動にするものであり、それ以上でもそれ以下でもない。
+V8 は通常のリテラルに対して既にこのトレードオフを受け入れている。
+null プロトタイプのリテラルを辞書として使った場合に起こることは、通常のリテラルを辞書として使った場合に起こることと同じである。
+
+とはいえ、現実のコードで「null プロトタイプのリテラルにプロパティを宣言し、その後に一意なキーを追加する」パターンがどれだけあるかは、マイクロベンチマークでは分からない。
+そのため、この挙動は `--fast-null-proto-literals` というフラグの裏に入れた。
+デフォルトでは off で、`--future` を付けると有効になる。
+Chrome の Finch (フィールドトライアル) で実際のユーザーに対して有効にし、性能指標への影響を測ったうえでデフォルトを切り替える予定である。
+
+## まとめ
+
+- V8 のオブジェクトリテラルは、初回評価で boilerplate を作り、以後はそれをコピーする。boilerplate の Map がすべてを決める
+- `__proto__: null` はパーサーでフラグになり、ランタイムで `slow_object_with_null_prototype_map` に振り分けられていた。2017 年に map explosion 対策として入った判断である
+- パッチでは `JSDataObjectBuilder` に prototype を渡し、ルート Map に prototype 遷移をかけてからプロパティ遷移を積む。`SetPrototype` を後から呼ぶ方式は `MapUpdater` が高コストなのでやめた
+- 128 プロパティ以上のリテラルは dictionary map に prototype 遷移がキャッシュされないため、従来の経路に残した
+- 計測上は通常のリテラルと同じ挙動になるが、現実の影響は Finch で測るためフラグの裏にある
+
+## 他の処理系の実装
+
+### JavaScriptCore
+
+JSC は `__proto__: expr` をオブジェクトリテラルの中で見つけると、`@setPrototypeDirect` という private builtin の呼び出しを bytecode に出す。
+専用の opcode はなく、`null` も特別扱いしない。
+
+```cpp title="Source/JavaScriptCore/bytecompiler/NodesCodegen.cpp"
+if (PropertyNode::isUnderscoreProtoSetter(generator.vm(), node)) {
+    RefPtr<RegisterID> prototype = generator.emitNode(node.m_assign);
+    generator.emitDirectSetPrototypeOf<InvalidPrototypeMode::Ignore>(newObj, prototype.get(), ...);
+    return;
+}
+```
+
+ランタイム側の `JSObject::setPrototypeDirect` は、`Structure::changePrototypeTransition` で Structure を遷移させる。
+この遷移は Structure の transition table にキャッシュされ、同じ Structure から同じ prototype への遷移は共有される。
+dictionary structure に落とすことはない。
+つまり JSC では、`{__proto__: null, a: 1}` は最初から `Object.setPrototypeOf({a: 1}, null)` と同じ扱いで、V8 のような「null プロトタイプは辞書」という前提は持っていない。
+
+### SpiderMonkey
+
+SpiderMonkey は `JSOp::MutateProto` という専用の opcode を持つ。
+インタプリタの実装は、値が object か null であることを確認して `SetPrototype` を呼ぶだけである。
+
+`SetPrototype` は最終的に `Shape::replaceShape` に到達する。
+新しい shape は、クラス・realm・prototype をキーとする `BaseShape` のキャッシュと、`BaseShape`・プロパティマップ・フラグをキーとする shared shape のキャッシュから引かれる。
+既に dictionary mode のオブジェクトでない限り、dictionary mode に落ちることはない。
+
+ただし SpiderMonkey では別の影響が出る。
+通常のオブジェクトリテラルは `ObjLiteral` という仕組みで、パース時にプロパティのキーと値をテンプレート化し、`JSOp::Object` 1 つで生成できる。
+`__proto__` を含むリテラルはこの最適化の対象外になり、`JSOp::NewInit` でオブジェクトを作ってから `JSOp::InitProp` と `JSOp::MutateProto` を 1 つずつ実行する経路になる。
+fast mode は維持されるが、生成そのものは通常のリテラルより遅い。
+
+### 比較
+
+3 つの処理系はいずれも、`__proto__: value` を「オブジェクトを作ってから prototype を付け替える」操作として扱っている。
+違うのは、その付け替えの結果をどう保持するかだ。
+
+- JSC と SpiderMonkey は、prototype を含む hidden class の遷移をキャッシュし、fast mode を維持する
+- V8 は `__proto__: null` に限り、生成経路そのものを dictionary mode に切り替えていた
+
+V8 だけが特別だったのは、hidden class の仕組みの違いというより、「null プロトタイプのオブジェクトは辞書である」という用途の推定を生成経路に組み込んでいたからである。
+今回のパッチは、その推定を「プロパティを宣言していなければ辞書」という、より狭い条件に置き換えたものと言える。
