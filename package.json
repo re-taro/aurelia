@@ -80,7 +80,7 @@
 		"typescript": "6.0.3",
 		"vite-plugin-glsl": "1.6.4",
 		"vitest": "5.1.2",
-		"wrangler": "4.127.1"
+		"wrangler": "4.169.0"
 	},
 	"packageManager": "pnpm@11.29.0"
 }
