@@ -65,7 +65,7 @@
 		"html-rewriter-wasm": "0.4.1",
 		"mdast-util-mdx-jsx": "3.2.2",
 		"oxfmt": "0.80.0",
-		"oxlint": "1.93.0",
+		"oxlint": "1.95.0",
 		"oxlint-tsgolint": "7.0.2009",
 		"rehype-katex": "7.0.1",
 		"remark-cjk-friendly": "2.3.4",
