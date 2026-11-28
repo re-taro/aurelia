@@ -1,10 +1,15 @@
-import { globalStyle, style } from '@vanilla-extract/css';
+import { createVar, globalStyle, style } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 
 import { vars } from '../../../foundation/styles/tokens';
 import { MediaQuery } from '../../../foundation/styles/tokens/breakpoint';
 
 const ORDER_LIST_COUNTER = 'order';
+
+const tableBorderOuter = createVar();
+const tableBorderCell = createVar();
+const tableHeaderBackground = createVar();
+const tableStripe = createVar();
 
 export const article = style({
 	display: 'flex',
@@ -67,14 +72,62 @@ globalStyle(`:where(${markdown}) p`, {
 });
 
 // code
-globalStyle(`:where(${markdown}) > code`, {
+globalStyle(`:where(${markdown}) :is(p, th, td) > code`, {
 	fontFamily: 'ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, "DejaVu Sans Mono", monospace',
 });
-globalStyle(`:where(${markdown}) > code::before`, {
+globalStyle(`:where(${markdown}) :is(p, th, td) > code::before`, {
 	content: '`',
 });
-globalStyle(`:where(${markdown}) > code::after`, {
+globalStyle(`:where(${markdown}) :is(p, th, td) > code::after`, {
 	content: '`',
+});
+
+// table
+globalStyle(`:where(${markdown}) table`, {
+	vars: {
+		[tableBorderOuter]: vars.color['mono.90'],
+		[tableBorderCell]: vars.color['mono.50.hover'],
+		[tableHeaderBackground]: `color-mix(in oklab, ${vars.color.brand} 15%, transparent)`,
+		[tableStripe]: `color-mix(in oklab, ${vars.color['mono.50.hover']} 35%, transparent)`,
+	},
+	...vars.typography['normal.10'],
+	width: '100%',
+	margin: `${calc.multiply(vars.space, 2)} 0`,
+	border: `1px solid ${tableBorderOuter}`,
+	borderCollapse: 'collapse',
+	tableLayout: 'fixed',
+});
+globalStyle(`:where(${markdown}) table:has(caption)`, {
+	captionSide: 'bottom',
+});
+globalStyle(`:where(${markdown}) caption`, {
+	marginTop: calc.multiply(vars.space, 0.5),
+	textAlign: 'start',
+});
+globalStyle(`:where(${markdown}) :is(th, td)`, {
+	padding: `${calc.multiply(vars.space, 0.75)} ${calc.multiply(vars.space, 1.5)}`,
+	border: `1px solid ${tableBorderCell}`,
+	overflowWrap: 'anywhere',
+	verticalAlign: 'baseline',
+});
+globalStyle(`:where(${markdown}) th`, {
+	backgroundColor: tableHeaderBackground,
+	fontWeight: 'bold',
+});
+globalStyle(`:where(${markdown}) th:not([align])`, {
+	textAlign: 'start',
+});
+globalStyle(`:where(${markdown}) thead th`, {
+	verticalAlign: 'bottom',
+});
+globalStyle(`:where(${markdown}) thead`, {
+	borderBottom: `2px solid ${tableBorderOuter}`,
+});
+globalStyle(`:where(${markdown}) tfoot`, {
+	borderTop: `2px solid ${tableBorderOuter}`,
+});
+globalStyle(`:where(${markdown}) tbody tr:nth-child(even)`, {
+	backgroundColor: tableStripe,
 });
 
 // superscript
